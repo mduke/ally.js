@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
+  <meta charset="utf-8">
   <title>Releasing ally.js - ally.js</title><link rel="canonical" href="http://allyjs.io/contributing/release.html">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../assets/website.css">
@@ -91,8 +91,9 @@
 <h2><a id="Publishing-the-library-to-npm" href="#Publishing-the-library-to-npm" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Publishing the library to npm</h2>
 <ul>
 <li><code>npm version &lt;version&gt;</code> to update the package version</li>
+<li>search <code>docs/*.md</code> for <code>v#master</code> and replace with new version (unless this is a beta release)</li>
 <li>update <code>CHANGELOG.md</code> accordingly</li>
-<li><code>git commit package.json CHANGELOG.md -m &apos;chore(build): bumping to version &lt;version&gt;&apos;</code> to save the changes</li>
+<li><code>git commit package.json CHANGELOG.md docs -m &apos;chore(build): bumping to version &lt;version&gt;&apos;</code> to save the changes</li>
 <li><code>npm run clean</code> to empty <code>dist</code>, <code>web</code> and <code>reports</code></li>
 <li><code>npm run lint</code> to build the library</li>
 <li><code>npm run build</code> to build the library</li>
@@ -109,7 +110,7 @@
 <li>open the <a href="https://github.com/medialize/ally.js/releases">github releases page</a>, then
 <ul>
 <li>edit the new tag and copy-paste the relevant changes from <code>CHANGELOG.md</code></li>
-<li>upload the files <code>dist/ally.js</code>, <code>dist/ally.js.map</code> and <code>dist/ally.js.zip</code></li>
+<li>upload the files <code>dist/ally.js</code>, <code>dist/ally.js.map</code>, <code>dist/ally.js.zip</code> and <code>dist/ally.js.tar.gz</code></li>
 <li>mark as <code>pre-release</code> if the library was pushed to beta channel</li>
 </ul></li>
 <li><code>git checkout release &amp;&amp; git merge master &amp;&amp; git push --no-verify</code> to update the &quot;latest stable release&quot; branch</li>

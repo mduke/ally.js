@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
+  <meta charset="utf-8">
   <title>Test infrastructure - ally.js</title><link rel="canonical" href="http://allyjs.io/contributing/testing.html">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../assets/website.css">
@@ -174,7 +174,7 @@ npm run test:sauce
 &#x251C;&#x2500;&#x2500; junit.xml       - test status non-human readable format
 &#x2514;&#x2500;&#x2500; lcov.info       - test coverage non-human readable format
 </code></pre>
-<p>When the tests executed, code coverage results can be uploaded to <a href="http://codeclimate.com/">Code Climate</a> by running <code>npm run publish:lcov</code>.</p>
+<p>When the tests executed, code coverage results can be uploaded to <a href="http://codeclimate.com/">Code Climate</a> and <a href="http://coveralls.io/">Coveralls</a> by running <code>npm run publish:lcov</code>.</p>
 <div class="note"><strong>NOTE:</strong> The coverage measured by <code>npm run test</code> is (dramatically) lower than for <code>npm run test-ci</code>, because the former only runs in a single browser, and ally.js has code paths that only run in specific browsers.</div>
 <h2><a id="Analyzing-bundle-size" href="#Analyzing-bundle-size" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Analyzing bundle size</h2>
 <p>Before a release the structure of the UMD bundle should be analyzed to make sure we didn&apos;t accidentally blow it up. This is done using <a href="https://github.com/danvk/source-map-explorer">source-map-explorer</a>.</p>

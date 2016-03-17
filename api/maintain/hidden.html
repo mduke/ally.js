@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
+  <meta charset="utf-8">
   <title>ally.maintain.hidden - ally.js</title><link rel="canonical" href="http://allyjs.io/api/maintain/hidden.html">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../../assets/website.css">
@@ -116,6 +116,11 @@
           
           
           <li class="">
+            <a class="" href="../get/focus-redirect-target.html">ally.get.focusRedirectTarget</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="../get/focus-target.html">ally.get.focusTarget</a>
           </li>
           
@@ -137,6 +142,11 @@
           
           <li class="">
             <a class="" href="../get/shadow-host-parents.html">ally.get.shadowHostParents</a>
+          </li>
+          
+          
+          <li class="">
+            <a class="" href="../is/active-element.html">ally.is.activeElement</a>
           </li>
           
           
@@ -196,6 +206,11 @@
           
           
           <li class="">
+            <a class="" href="tab-focus.html">ally.maintain.tabFocus</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="../map/attribute.html">ally.map.attribute</a>
           </li>
           
@@ -211,12 +226,22 @@
           
           
           <li class="">
+            <a class="" href="../observe/shadow-mutations.html">ally.observe.shadowMutations</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="../query/first-tabbable.html">ally.query.firstTabbable</a>
           </li>
           
           
           <li class="">
             <a class="" href="../query/focusable.html">ally.query.focusable</a>
+          </li>
+          
+          
+          <li class="">
+            <a class="" href="../query/shadow-hosts.html">ally.query.shadowHosts</a>
           </li>
           
           
@@ -305,6 +330,8 @@
           
           
           
+          
+          
           </ul>
         </nav>      </aside>
     </div>
@@ -318,7 +345,7 @@
 <h2><a id="Usage" href="#Usage" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Usage</h2>
 <pre><code class="language-javascript">var handle = ally.maintain.hidden({
   context: &apos;.within-filter-selector&apos;,
-  filter: &apos;.except-filter-selector&apos;
+  filter: &apos;.except-filter-selector&apos;,
 });
 
 handle.disengage();
@@ -337,7 +364,7 @@ handle.disengage();
 <p>A <a href="../concepts.html#Service"><code>&lt;service&gt;</code></a> interface, providing the <code>handle.disengage()</code> method to stop the service.</p>
 
 <h2><a id="Examples" href="#Examples" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Examples</h2>
-<section class="example"><h1><a id="Example-ally-maintain-hidden-Example" href="#Example-ally-maintain-hidden-Example" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Example: ally.maintain.hidden Example</h1><a class="jsbin-embed" href="https:/jsbin.com/kaqoca/embed?output">ally.maintain.hidden Example on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.35.3"></script><p><a href="https:/jsbin.com/kaqoca/edit" target="_blank">play with the example on jsbin.com</a> or <a href="./hidden.example.html" target="_blank">open the source document</a></p></section>
+<section class="example"><h1><a id="Example-ally-maintain-hidden-Example" href="#Example-ally-maintain-hidden-Example" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Example: ally.maintain.hidden Example</h1><a class="jsbin-embed" href="https://jsbin.com/kaqoca/embed?output">ally.maintain.hidden Example on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.35.3"></script><p><a href="https://jsbin.com/kaqoca/edit" target="_blank">play with the example on jsbin.com</a> or <a href="./hidden.example.html" target="_blank">open the source document</a></p></section>
 <h2><a id="Notes" href="#Notes" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Notes</h2>
 <div class="note"><strong>NOTE:</strong> Internet Explorer 10 will not update changes made to elements within the inert sub-trees, because it does not support <a href="https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver">MutationObserver</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Mutation_events">Mutation Events</a> are too much of a burden.</div>
 <h2><a id="Related-resources" href="#Related-resources" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Related resources</h2>

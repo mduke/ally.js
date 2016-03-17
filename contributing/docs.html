@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
+  <meta charset="utf-8">
   <title>Documentation infrastructure - ally.js</title><link rel="canonical" href="http://allyjs.io/contributing/docs.html">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../assets/website.css">
@@ -89,11 +89,15 @@
       <h1><a id="Documentation-infrastructure" href="#Documentation-infrastructure" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Documentation infrastructure</h1>
 <p>The documentation is authored in markdown in the <code>docs</code> directory. We&apos;re using <a href="https://www.npmjs.com/package/remarkable">Remarkable</a> (but staying close to <a href="https://help.github.com/articles/github-flavored-markdown/">Github Flavored Markdown</a>) to convert the markdown to HTML. <a href="https://github.com/DavidAnson/markdownlint/">markdownlint</a> is there to lint the files, its configuration is maintained in <code>build/markdownlint.js</code>, see the <a href="https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md">Rules</a>.</p>
 <p>The idea is to create a documentation that can be read on github and on the generated website.</p>
+<div class="note"><strong>NOTE:</strong> If this is your first contact with ally.js, make sure to run <code>npm run init</code> after cloning the repository. This will run <code>npm install</code>, <code>npm run build</code> and <code>npm run build:website</code> to make sure your local copy is ready.</div>
 <h2><a id="Building-the-website" href="#Building-the-website" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Building the website</h2>
 <p>The doc source are converted to HTML by <a href="http://metalsmith.io/">metalsmith</a>, the scripts and configuration are maintained in the <code>build/metalsmith</code> directory.</p>
 <p>The website is comprised of 3 elements, the markdown sources, data tables and some legacy files from <code>./tests</code>.</p>
 <pre><code class="language-bash"># lint the markdown
 npm run lint:md
+
+# build the library (to `./dist`)
+npm run build
 
 # generate website (to `./web`)
 npm run build:website
@@ -107,7 +111,8 @@ npm run build:data-tables
 # generate only the legacy files
 npm run build:legacy
 </code></pre>
-<p>The commands <code>lint:md</code> and <code>build:website</code> are also executed by <code>npm run lint</code> and <code>npm run build</code></p>
+<p>The commands <code>lint:md</code> and <code>build:website</code> are also executed by <code>npm run lint</code> and <code>npm run build</code>.</p>
+<div class="note"><strong>NOTE:</strong> Before you build the website using <code>npm run build:website</code> you need to have run <code>npm run build</code> before, in order for the library components to be available to the website build. You don&apos;t need to build the library every time you build the website, which is why this step is disconnected. If you ran <code>npm run init</code> after cloning the repository, everything is taken care of already.</div>
 <p>If you&apos;re new to metalsmith, have a look at <a href="https://github.com/segmentio/metalsmith/tree/master/examples/static-site">simple static site demo</a> and <a href="http://www.robinthrift.com/posts/getting-to-know-metalsmith/">getting to know metalsmith</a>.</p>
 <p>We use the following plugins:</p>
 <ul>
@@ -152,7 +157,7 @@ npm run build:legacy
   &lt;/main&gt;
 &lt;/div&gt;
 
-&lt;script src=&quot;https://cdn.jsdelivr.net/ally.js/1.0.1/ally.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdn.jsdelivr.net/ally.js/1.1.0/ally.min.js&quot;&gt;&lt;/script&gt;
 
 &lt;script id=&quot;example-js&quot;&gt;
   ${example_script}
@@ -186,7 +191,17 @@ tags: option-argument, service, svg
 
 # Headline
 </code></pre>
-<dl><dt>argument-options:</dt><dd> To declare the module belongs to the family of components expecting a <a href="../api/concepts.html#Single-options-argument">single options argument</a></dd><dt>argument-list:</dt><dd> To declare the module expects plain arguments, not the <a href="../api/concepts.html#Single-options-argument">single options argument</a> pattern</dd><dt>service:</dt><dd> To declare the module belongs to the family of <a href="../api/concepts.html#Service">Service</a> components</dd><dt>global-service:</dt><dd> To declare the module belongs to the family of <a href="../api/concepts.html#Global-service">Global Service</a> components</dd><dt>data:</dt><dd> To declare the module provides data, not functionality</dd><dt>internal:</dt><dd> To declare the module is intended for internal use only</dd><dt>browser-fix:</dt><dd> To declare the module&apos;s only intention is to counter a specific browser quirk</dd><dt>shadow-dom:</dt><dd> To declare special support for Shadow DOM</dd><dt>svg:</dt><dd> To declare special support for SVG</dd></dl>
+<dl><dt>argument-options:</dt><dd> To declare the module belongs to the family of components expecting a <a href="../api/concepts.html#Single-options-argument">single options argument</a></dd><dt>argument-list:</dt><dd> To declare the module expects plain arguments, not the <a href="../api/concepts.html#Single-options-argument">single options argument</a> pattern</dd><dt>service:</dt><dd> To declare the module belongs to the family of <a href="../api/concepts.html#Service">Service</a> components</dd><dt>global-service:</dt><dd> To declare the module belongs to the family of <a href="../api/concepts.html#Global-service">Global Service</a> components</dd><dt>data:</dt><dd> To declare the module provides data, not functionality</dd><dt>internal:</dt><dd> To declare the module is intended for internal use only</dd><dt>browser-fix:</dt><dd> To declare the module&apos;s only intention is to counter a specific browser quirk</dd><dt>content-document:</dt><dd> To declare the module resolves <code>&lt;object&gt;</code> and <code>&lt;iframe&gt;</code> elements to their content documents</dd><dt>shadow-dom:</dt><dd> To declare special support for Shadow DOM</dd><dt>svg:</dt><dd> To declare special support for SVG</dd></dl>
+<h3><a id="API-changes" href="#API-changes" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>API changes</h3>
+<p>In addition to the less specific <a href="https://github.com/medialize/ally.js/tree/master/CHANGELOG.md">CHANGELOG.md</a>, API documents must declare specific changes in detail:</p>
+<pre><code class="language-markdown">## Changes
+
+* `v1.2.3` introduced the option `gustav`
+* `v1.3.0` removed the option `otto`
+* Since `v1.6.0` the function returns coffee instead of tea
+</code></pre>
+<p>Since the exact release version a change will be included in is not necessarily known during development, the placeholder <code>v#master</code> should be used.</p>
+<div class="note"><strong>NOTE:</strong> The version notation may be extended to also contain addition <code>+v1.0.0</code> / removal <code>-v1.0.0</code> / change <code>~v1.0.0</code> should this become necessary. The website builder may replace the code elements by links to the change log.</div>
 
     </main>
   </div>

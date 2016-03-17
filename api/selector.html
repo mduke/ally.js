@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
+  <meta charset="utf-8">
   <title>Selector - ally.js</title><link rel="canonical" href="http://allyjs.io/api/selector.html">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../assets/website.css">
@@ -101,6 +101,11 @@
           
           
           <li class="">
+            <a class="" href="get/focus-redirect-target.html">ally.get.focusRedirectTarget</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="get/focus-target.html">ally.get.focusTarget</a>
           </li>
           
@@ -122,6 +127,11 @@
           
           <li class="">
             <a class="" href="get/shadow-host-parents.html">ally.get.shadowHostParents</a>
+          </li>
+          
+          
+          <li class="">
+            <a class="" href="is/active-element.html">ally.is.activeElement</a>
           </li>
           
           
@@ -181,6 +191,11 @@
           
           
           <li class="">
+            <a class="" href="maintain/tab-focus.html">ally.maintain.tabFocus</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="map/attribute.html">ally.map.attribute</a>
           </li>
           
@@ -196,12 +211,22 @@
           
           
           <li class="">
+            <a class="" href="observe/shadow-mutations.html">ally.observe.shadowMutations</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="query/first-tabbable.html">ally.query.firstTabbable</a>
           </li>
           
           
           <li class="">
             <a class="" href="query/focusable.html">ally.query.focusable</a>
+          </li>
+          
+          
+          <li class="">
+            <a class="" href="query/shadow-hosts.html">ally.query.shadowHosts</a>
           </li>
           
           
@@ -290,6 +315,8 @@
           
           
           
+          
+          
           </ul>
         </nav>      </aside>
     </div>
@@ -297,9 +324,9 @@
     <main id="main" tabindex="-1">
       <h1><a id="Selector" href="#Selector" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Selector</h1>
 <p>The selectors contain query selectors (&quot;css selectors&quot;) used by DOM methods. They should <em>not</em> be used directly. Instead use the appropriate modules provided in the <code>dom</code> namespace.</p>
-<p>It is impossible to query focusable elements by way of CSS selector alone, because certain element states can not be identified using CSS. You should therefore not use <code>ally/selector/focusable</code> directly, but instead refer to <a href="query/focusable.html"><code>ally.query.focusable</code></a> and <a href="is/focusable.html"><code>ally.is.focusable</code></a>.</p>
+<p>It is impossible to query focusable elements by way of CSS selector alone, because certain element states can not be identified using CSS. You should therefore not use <code>ally/selector/focusable</code> directly, but instead refer to <a href="query/focusable.html"><code>ally.query.focusable</code></a> and <a href="is/focusable.html"><code>ally.is.focusable</code></a>. If you need a <em>correct</em> result, use <code>ally.query.focusable({ strategy: &quot;strict&quot; })</code>.</p>
 <h2><a id="Contributing" href="#Contributing" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Contributing</h2>
-<p>While <code>ally/selector/focusable</code> will identify elements that are filtered by <a href="query/focusable.html"><code>ally.query.focusable</code></a>, the inverse is not true - whatever cannot be identified as <em>potentially</em> focusable via CSS, will <em>not</em> be returned by <a href="query/focusable.html"><code>ally.query.focusable</code></a> either. Of course it is technically possible to use a <a href="https://developer.mozilla.org/en-US/docs/Web/API/TreeWalker">TreeWalker</a> to iterate through all the nodes to find ones the ones having the computed style <code>-user-modify: read-write</code>, but the performance hit is considered too big.</p>
+<p>While <code>ally/selector/focusable</code> will identify elements that are filtered by <a href="query/focusable.html"><code>ally.query.focusable</code></a>, the inverse is not true - whatever cannot be identified as <em>potentially</em> focusable via CSS selector, will <em>not</em> be returned by <a href="query/focusable.html"><code>ally.query.focusable</code></a> (with <code>strategy: &quot;quick&quot;</code>) either. To identify <em>everything</em>, the <code>query/focusable.strict</code> implementation uses  <a href="https://developer.mozilla.org/en-US/docs/Web/API/TreeWalker">TreeWalker</a> instead of <code>document.querySelectorAll()</code>.</p>
 
     </main>
   </div>

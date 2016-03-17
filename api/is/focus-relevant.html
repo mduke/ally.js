@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
+  <meta charset="utf-8">
   <title>ally.is.focusRelevant - ally.js</title><link rel="canonical" href="http://allyjs.io/api/is/focus-relevant.html">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../../assets/website.css">
@@ -45,6 +45,9 @@
         
         
         <li><a href="#Usage">Usage</a></li>
+        
+        
+        <li><a href="#Changes">Changes</a></li>
         
         
         <li><a href="#Notes">Notes</a></li>
@@ -113,6 +116,11 @@
           
           
           <li class="">
+            <a class="" href="../get/focus-redirect-target.html">ally.get.focusRedirectTarget</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="../get/focus-target.html">ally.get.focusTarget</a>
           </li>
           
@@ -134,6 +142,11 @@
           
           <li class="">
             <a class="" href="../get/shadow-host-parents.html">ally.get.shadowHostParents</a>
+          </li>
+          
+          
+          <li class="">
+            <a class="" href="active-element.html">ally.is.activeElement</a>
           </li>
           
           
@@ -193,6 +206,11 @@
           
           
           <li class="">
+            <a class="" href="../maintain/tab-focus.html">ally.maintain.tabFocus</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="../map/attribute.html">ally.map.attribute</a>
           </li>
           
@@ -208,12 +226,22 @@
           
           
           <li class="">
+            <a class="" href="../observe/shadow-mutations.html">ally.observe.shadowMutations</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="../query/first-tabbable.html">ally.query.firstTabbable</a>
           </li>
           
           
           <li class="">
             <a class="" href="../query/focusable.html">ally.query.focusable</a>
+          </li>
+          
+          
+          <li class="">
+            <a class="" href="../query/shadow-hosts.html">ally.query.shadowHosts</a>
           </li>
           
           
@@ -302,15 +330,18 @@
           
           
           
+          
+          
           </ul>
         </nav>      </aside>
     </div>
 
     <main id="main" tabindex="-1">
       <h1><a id="ally-is-focusRelevant" href="#ally-is-focusRelevant" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>ally.is.focusRelevant</h1>
-<p>Determines if an element is considered focusable by script.</p>
+<p>Determines if an element has any relevance to focus management.</p>
 <h2><a id="Description" href="#Description" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Description</h2>
-<p>Consult the data tables <a href="../../data-tables/focusable.html">what browsers consider focusable</a> and <a href="../../data-tables/focusable.strict.html">what ally.js considers focusable</a> to learn how HTML elements behave.</p>
+<p>This module is a pre-filter for <a href="focusable.html"><code>ally.is.focusable</code></a>, <a href="tabbable.html"><code>ally.is.tabbable</code></a>, <a href="only-tabbable.html"><code>ally.is.onlyTabbable</code></a> and <a href="../get/focus-redirect-target.html"><code>ally.get.focusRedirectTarget</code></a>. Elements may be considered focus-relevant, even though they do not in fact be focusable, tabbable, only-tabbable or redirect focus given their current conditions. But any element that is focusable, tabbable, only-tabbable or redirects focus <em>is</em> focus-relevant.</p>
+<p>Consult the data tables <a href="../../data-tables/focusable.html">what browsers consider focusable</a> and <a href="../../data-tables/focusable.is.html">what ally.js fails to consider focusable</a> to learn how HTML elements behave.</p>
 <h2><a id="Usage" href="#Usage" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Usage</h2>
 <pre><code class="language-javascript">var element = document.getElementById(&apos;victim&apos;);
 var isFocusRelevant = ally.is.focusRelevant(element);
@@ -324,22 +355,44 @@ var isFocusRelevant = ally.is.focusRelevant(element);
 <tr><td>element</td><td><a href="https://developer.mozilla.org/en/docs/Web/API/HTMLElement"><code>HTMLElement</code></a></td><td><em>required</em></td><td>The Element to test.</td></tr>
 </tbody>
 </table>
+<p>The underlying rules can also be accessed in the <a href="../concepts.html#Single-options-argument"><code>options</code> argument style</a> by calling <code>ally.is.focusRelevant.rules(options)</code>:</p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Default</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>context</td><td><a href="../concepts.html#Selector"><code>&lt;selector&gt;</code></a></td><td><em>required</em></td><td>The element to examine. The first element of a collection is used.</td></tr>
+<tr><td>except</td><td><a href="../concepts.html#Focus-identification-exceptions"><code>&lt;focus identification exception&gt;</code></a></td><td><code>{}</code></td><td>The Element to test.</td></tr>
+</tbody>
+</table>
 <h3><a id="Returns" href="#Returns" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Returns</h3>
 <p>Boolean, <code>true</code> if the element is focus relevant.</p>
 <h3><a id="Throws" href="#Throws" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Throws</h3>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError"><code>TypeError</code></a> if <code>element</code> argument is not of type <code>HTMLElement</code>.</p>
 
+<h2><a id="Changes" href="#Changes" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Changes</h2>
+<ul>
+<li>Since <code>v1.1.0</code> the <code>&lt;embed&gt;</code> and <code>&lt;keygen&gt;</code> elements are considered focus-relevant, but <em>not</em> focusable.</li>
+<li>Since <code>v1.1.0</code> the <code>element.prototype.matches</code> polyfill is re-applied to allow elements from other documents (e.g. from an iframe).</li>
+<li>Since <code>v1.1.0</code> the <code>&lt;object&gt;</code> element properly distinguishes between SVG and SWF content.</li>
+<li>Since <code>v1.1.0</code> elements using Flexbox layout are properly identified in IE10 and IE11.</li>
+<li>Since <code>v1.1.0</code> the Shadow DOM hosts are considered focus-relevant, but <em>not</em> focusable.</li>
+<li>Since <code>v1.1.0</code> scrollable containers are properly identified in Internet Explorer.</li>
+<li>Since <code>v1.1.0</code> all <code>&lt;area&gt;</code> elements are considered focus-relevant.</li>
+<li>Since <code>v1.1.0</code> every element that is either focusable, keyboard focusable, only tabbable or redirects focus is considered focus-relevant.</li>
+<li>Since <code>v1.1.0</code> exceptions can be passed to <code>ally.is.focusRelevant.rules(options)</code>.</li>
+<li>Since <code>v1.1.0</code> IE9 properly resolves SVG links (<code>&lt;a xlink:href=&quot;&#x2026;&quot;&gt;</code>).</li>
+</ul>
 <h2><a id="Notes" href="#Notes" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Notes</h2>
-<div class="note"><strong>NOTE:</strong> The <code>&lt;body&gt;</code> element may mistakenly considered focusable, because it is the default activeElement if no other element has focus - but it is not focusable, unless made so by adding the <code>tabindex</code> attribute.</div><div class="note"><strong>NOTE:</strong> Because the <code>&lt;keygen&gt;</code> element is poorly supported, practically never used and has seen <a href="https://groups.google.com/a/chromium.org/forum/m/#!msg/blink-dev/pX5NbX0Xack/kmHsyMGJZAMJ">intent to deprecate</a>, it is <em>not</em> considered focusable by ally.js.</div><div class="warning"><strong>WARNING:</strong> Firefox and Internet Explorer cannot focus <code>SVGElement</code>s by script, thus no SVG element is considered focusable, see <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1116966">Gecko 1116966</a></div><div class="warning"><strong>WARNING:</strong> WebKit and Blink make any <code>SVGElement</code> focusable that has a <code>focus</code> event listener attached, see <a href="https://code.google.com/p/chromium/issues/detail?id=445798">Blink 445798</a>, <a href="https://bugs.webkit.org/show_bug.cgi?id=140024">WebKit 140024</a></div>
+<div class="note"><strong>NOTE:</strong> The <code>&lt;body&gt;</code> element may mistakenly considered focusable, because it is the default activeElement if no other element has focus - but it is not focusable, unless made so by adding the <code>tabindex</code> attribute.</div><div class="note"><strong>NOTE:</strong> Because the <code>&lt;keygen&gt;</code> element is poorly supported, practically never used and has seen <a href="https://groups.google.com/a/chromium.org/forum/m/#!msg/blink-dev/pX5NbX0Xack/kmHsyMGJZAMJ">intent to deprecate</a>, ally considers all <code>&lt;keygen&gt;</code> elements focus-relevant but <em>not</em> focusable.</div><div class="note"><strong>NOTE:</strong> Because the behavior of the <code>&lt;embed&gt;</code> element depends on the content type and browser plugin, ally considers all <code>&lt;embed&gt;</code> elements focus-relevant but <em>not</em> focusable.</div><div class="note"><strong>NOTE:</strong> Internet Explorer 9 supports <a href="https://en.wikipedia.org/wiki/Vector_Markup_Language">VML</a> (which was dropped in IE10 in favor of SVG), which allows linking using the <code>href</code> attribute. Ally.js does <em>not</em> understand VML because it does not exist in modern browsers anymore.</div><div class="warning"><strong>WARNING:</strong> Firefox and Internet Explorer cannot focus <code>SVGElement</code>s by script, thus no SVG element is considered focusable, see <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1116966">Gecko 1116966</a></div><div class="warning"><strong>WARNING:</strong> WebKit and Blink make any <code>SVGElement</code> focusable that has a <code>focus</code> event listener attached, see <a href="https://code.google.com/p/chromium/issues/detail?id=445798">Blink 445798</a>, <a href="https://bugs.webkit.org/show_bug.cgi?id=140024">WebKit 140024</a></div>
 <h2><a id="Related-resources" href="#Related-resources" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Related resources</h2>
 <ul>
 <li><p><a href="focusable.html"><code>ally.is.focusable</code></a> tests focus-relevant elements if they&apos;re also visible and not disabled</p></li>
 <li><p><a href="tabbable.html"><code>ally.is.tabbable</code></a> tests elements if they&apos;re keyboard focusable</p></li>
-<li><p><a href="valid-area.html"><code>ally.is.validArea</code></a> is used to identify if <code>&lt;area&gt;</code> elements satisfy the requirements to be considered focusable.</p></li>
 <li><p><a href="valid-tabindex.html"><code>ally.is.validTabindex</code></a> is used to verify the element&apos;s <code>tabindex</code> value is valid</p></li>
 <li><p><a href="../query/focusable.html"><code>ally.query.focusable</code></a> finds focusable elements in the DOM</p></li>
 <li><p><a href="../../data-tables/focusable.html">What Browsers Consider Focusable</a></p></li>
-<li><p><a href="../../data-tables/focusable.strict.html">What ally.js Considers Focusable</a></p></li>
+<li><p><a href="../../data-tables/focusable.is.html">What ally.js fails to consider focusable</a></p></li>
 </ul>
 <h2><a id="Contributing" href="#Contributing" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Contributing</h2>
 <ul>

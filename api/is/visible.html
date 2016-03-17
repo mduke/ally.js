@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
+  <meta charset="utf-8">
   <title>ally.is.visible - ally.js</title><link rel="canonical" href="http://allyjs.io/api/is/visible.html">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../../assets/website.css">
@@ -45,6 +45,12 @@
         
         
         <li><a href="#Usage">Usage</a></li>
+        
+        
+        <li><a href="#Changes">Changes</a></li>
+        
+        
+        <li><a href="#Notes">Notes</a></li>
         
         
         <li><a href="#Contributing">Contributing</a></li>
@@ -107,6 +113,11 @@
           
           
           <li class="">
+            <a class="" href="../get/focus-redirect-target.html">ally.get.focusRedirectTarget</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="../get/focus-target.html">ally.get.focusTarget</a>
           </li>
           
@@ -128,6 +139,11 @@
           
           <li class="">
             <a class="" href="../get/shadow-host-parents.html">ally.get.shadowHostParents</a>
+          </li>
+          
+          
+          <li class="">
+            <a class="" href="active-element.html">ally.is.activeElement</a>
           </li>
           
           
@@ -187,6 +203,11 @@
           
           
           <li class="">
+            <a class="" href="../maintain/tab-focus.html">ally.maintain.tabFocus</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="../map/attribute.html">ally.map.attribute</a>
           </li>
           
@@ -202,12 +223,22 @@
           
           
           <li class="">
+            <a class="" href="../observe/shadow-mutations.html">ally.observe.shadowMutations</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="../query/first-tabbable.html">ally.query.firstTabbable</a>
           </li>
           
           
           <li class="">
             <a class="" href="../query/focusable.html">ally.query.focusable</a>
+          </li>
+          
+          
+          <li class="">
+            <a class="" href="../query/shadow-hosts.html">ally.query.shadowHosts</a>
           </li>
           
           
@@ -296,6 +327,8 @@
           
           
           
+          
+          
           </ul>
         </nav>      </aside>
     </div>
@@ -304,7 +337,14 @@
       <h1><a id="ally-is-visible" href="#ally-is-visible" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>ally.is.visible</h1>
 <p>Determines if an element is rendered.</p>
 <h2><a id="Description" href="#Description" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Description</h2>
-<p>An element must be visible (<a href="visible.html"><code>ally.is.visible</code></a>) and may not be disabled (<a href="disabled.html"><code>ally.is.disabled</code></a>) to be considered focusable.</p>
+<p>An element is considered visible if it satisfies all of the following rules:</p>
+<ul>
+<li>Neither the element nor an element of its ancestry has <a href="https://developer.mozilla.org/en/docs/Web/CSS/display"><code>display: none;</code></a> applied.</li>
+<li>Neither the element nor an element of its ancestry has <a href="https://developer.mozilla.org/en/docs/Web/CSS/visibility"><code>visibility: hidden;</code></a> applied, unless a closer relative in the ancestry reverts that directive by defining <code>visibility: visible</code>.</li>
+<li>The element is not a descendant of a collapsed <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details"><code>&lt;details&gt;</code> element</a>.</li>
+<li>The element is not hosted in an <code>&lt;object&gt;</code> or <code>&lt;iframe&gt;</code> element that is considered invisible by <code>ally.is.visible</code></li>
+</ul>
+<p>An element can be visible, but not visible within the viewport.</p>
 <h2><a id="Usage" href="#Usage" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Usage</h2>
 <pre><code class="language-javascript">var element = document.getElementById(&apos;victim&apos;);
 var isVisible = ally.is.visible(element);
@@ -318,12 +358,28 @@ var isVisible = ally.is.visible(element);
 <tr><td>element</td><td><a href="https://developer.mozilla.org/en/docs/Web/API/HTMLElement"><code>HTMLElement</code></a></td><td><em>required</em></td><td>The Element to test.</td></tr>
 </tbody>
 </table>
+<p>The underlying rules can also be accessed in the <a href="../concepts.html#Single-options-argument"><code>options</code> argument style</a> by calling <code>ally.is.visible.rules(options)</code>:</p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Default</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>context</td><td><a href="../concepts.html#Selector"><code>&lt;selector&gt;</code></a></td><td><em>required</em></td><td>The element to examine. The first element of a collection is used.</td></tr>
+<tr><td>except</td><td><a href="../concepts.html#Focus-identification-exceptions"><code>&lt;focus identification exception&gt;</code></a></td><td><code>{}</code></td><td>The Element to test.</td></tr>
+</tbody>
+</table>
 <h3><a id="Returns" href="#Returns" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Returns</h3>
-<p>Boolean, <code>true</code> if the element is focus relevant.</p>
+<p>Boolean, <code>true</code> if the element is visible (i.e. not hidden by CSS).</p>
 <h3><a id="Throws" href="#Throws" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Throws</h3>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError"><code>TypeError</code></a> if <code>element</code> argument is not of type <code>HTMLElement</code>.</p>
 
-
+<h2><a id="Changes" href="#Changes" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Changes</h2>
+<ul>
+<li>Since <code>v1.1.0</code> exceptions can be passed to <code>ally.is.visible.rules(options)</code>.</li>
+<li>Since <code>v1.1.0</code> the state of the hosting <code>&lt;iframe&gt;</code> or <code>&lt;object&gt;</code> element is considered.</li>
+</ul>
+<h2><a id="Notes" href="#Notes" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Notes</h2>
+<div class="note"><strong>NOTE:</strong> <code>&lt;area&gt;</code> elements are not rendered by themselves, so they are <em>always</em> considered visible.</div>
 
 <h2><a id="Contributing" href="#Contributing" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Contributing</h2>
 <ul>

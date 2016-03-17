@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
+  <meta charset="utf-8">
   <title>Accessible dialog tutorial - ally.js</title><link rel="canonical" href="http://allyjs.io/tutorials/accessible-dialog.html">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../assets/website.css">
@@ -324,10 +324,9 @@ closeButton.addEventListener(&apos;click&apos;, closeDialog, false);
 <ul>
 <li>focus may <em>not only</em> be shifted through <kbd>Tab</kbd>, as users of <a href="http://blog.codinghorror.com/spatial-navigation-and-opera/">spatial navigation</a> will attest</li>
 <li>assistive tools that provide more than sequential focus navigation (i.e. random access) may list all focusable elements of the page, including those visually behind the backdrop</li>
-<li>by redirecting focus to stay within the dialog it becomes impossible to reach the browser&apos;s UI by pressing <kbd>Tab</kbd>, so we&apos;re breaking native browser behavior</li>
 </ul>
 <p>We could do away with the need to react to <kbd>Tab</kbd>, by simply hiding everything outside the dialog. But while setting everything to <code>visibility: hidden;</code> would certainly do the job, it would also visually hide <em>everything but the dialog</em>, rendering the backdrop useless. Most visual designers I know digress.</p>
-<p>So what we really want to do is make everything that is focusable outside of the dialog, not focusable while the dialog is shown. This is no small feat, as browsers offer <em>absolutely no API</em> to achieve that and disagree on what exactly is focusable - see <a href="../data-tables/focusable.html">what browsers consider focusable</a>. On top of that only form elements know the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/%253Adisabled"><code>disabled</code> property</a>. ally.js has got you covered with <a href="../api/query/focusable.html"><code>ally.query.focusable</code></a> to <em>find</em> focusable elements, and <a href="../api/element/disabled.html"><code>ally.element.disabled</code></a> to <em>disable any element</em>.</p>
+<p>So what we really want to do is make everything that is focusable outside of the dialog, not focusable while the dialog is shown. This is no small feat, as browsers offer <em>absolutely no API</em> to achieve that and disagree on what exactly is focusable - see <a href="../data-tables/focusable.html">what browsers consider focusable</a>. On top of that only form elements know the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/%3Adisabled"><code>disabled</code> property</a>. ally.js has got you covered with <a href="../api/query/focusable.html"><code>ally.query.focusable</code></a> to <em>find</em> focusable elements, and <a href="../api/element/disabled.html"><code>ally.element.disabled</code></a> to <em>disable any element</em>.</p>
 <p>To make things even more comfortable for you, ally.js provides <a href="../api/maintain/disabled.html"><code>ally.maintain.disabled</code></a> to disable any focusable element and observe changes to the DOM, so any element added to the DOM while the dialog is being shown are disabled as well. The <code>disengage()</code> method stops observing the DOM and re-enables all elements that were disabled by the service.</p>
 <pre><code class="language-javascript">var dialog = document.getElementById(&apos;dialog&apos;);
 var disabledHandle;
@@ -340,6 +339,7 @@ function openDialog() {
   disabledHandle = ally.maintain.disabled({
     filter: dialog,
   });
+
   // create or show the dialog
   dialog.hidden = false;
 }
@@ -351,6 +351,33 @@ function closeDialog() {
   dialog.hidden = true;
 }
 </code></pre>
+<h3><a id="Reacting-to-Tab-and-Shift-Tab" href="#Reacting-to-Tab-and-Shift-Tab" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Reacting to <kbd>Tab</kbd> and <kbd>Shift Tab</kbd></h3>
+<p>When the last element of the document&apos;s tabbing order has focus and the user presses the <kbd>Tab</kbd> key, focus is not wrapped around to the first element of the tabbing order, but to the browser&apos;s UI (e.g. location bar or tabs). The same is true for the first element being focused and the user pressing <kbd>Shift Tab</kbd>.</p>
+<p>This is not quite the behavior we see in the modal dialogs provided by our operating systems, where focus is always trapped within the dialog. This is a behavior keyboard users have come to expect and we need to replicate in our web UIs as well.</p>
+<p>While <a href="../api/maintain/disabled.html"><code>ally.maintain.disabled</code></a> makes sure we can&apos;t focus any other element within the document, we still need to observe the <kbd>Tab</kbd> key to make focus wrap within the dialog&apos;s tabbing order. That&apos;s what <a href="../api/maintain/tab-focus.html"><code>ally.maintain.tabFocus</code></a> is for.</p>
+<pre><code class="language-javascript">var dialog = document.getElementById(&apos;dialog&apos;);
+var tabHandle;
+
+function openDialog() {
+  // Make sure that Tab key controlled focus is trapped within
+  // the tabsequence of the dialog and does not reach the
+  // browser&apos;s UI, e.g. the location bar.
+  tabHandle = ally.maintain.tabFocus({
+    context: dialog,
+  });
+
+  // create or show the dialog
+  dialog.hidden = false;
+}
+
+function closeDialog() {
+  // undo trapping Tab key focus
+  tabHandle.disengage();
+  // hide or remove the dialog
+  dialog.hidden = true;
+}
+</code></pre>
+<div class="note"><strong>NOTE:</strong> <a href="../api/maintain/tab-focus.html"><code>ally.maintain.tabFocus</code></a> was added in version <code>v1.1.0</code>.</div>
 <h3><a id="Reacting-to-Enter-and-Escape" href="#Reacting-to-Enter-and-Escape" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Reacting to <kbd>Enter</kbd> and <kbd>Escape</kbd></h3>
 <p>The <kbd>Escape</kbd> key usually closes (dismisses) a dialog and the <kbd>Enter</kbd> key usually activates the dialog&apos;s primary action. Because our example uses a <code>&lt;form&gt;</code> and a submit button for the save action, we don&apos;t have to listen for <kbd>Enter</kbd>, but can instead rely on the <code>submit</code> event of the <code>&lt;form&gt;</code>.</p>
 <p>If we hadn&apos;t done that, we&apos;d have to make sure that the currently focused element does not have an enter-specific activation whenever the <kbd>Enter</kbd> key was pressed. The activation of a link (<code>&lt;a href=&quot;&#x2026;&quot;&gt;</code>) is to open the referenced address. If we were to naively listen for <code>keydown</code> events and close the dialog upon <kbd>Enter</kbd>, we destroy the ability to interact with elements such as the link by keyboard. Since the is no way to reliably tell if an element is reacting to <kbd>Enter</kbd>, it seems easier to avoid that scenario entirely.</p>
@@ -490,7 +517,7 @@ function openDialog() {
 }
 </code></pre>
 <h2><a id="Interactive-demo" href="#Interactive-demo" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Interactive demo</h2>
-<div class="note"><strong>NOTE:</strong> Focus is only trapped inside of the embedded iframe. The iframe&apos;s content cannot change this page in any way.</div><section class="example"><h1><a id="Example-Dialog-Tutorial" href="#Example-Dialog-Tutorial" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Example: Dialog Tutorial</h1><a class="jsbin-embed" href="https:/jsbin.com/qawasag/embed?output">Dialog Tutorial on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.35.3"></script><p><a href="https:/jsbin.com/qawasag/edit" target="_blank">play with the example on jsbin.com</a> or <a href="./dialog.example.html" target="_blank">open the source document</a></p></section>
+<div class="note"><strong>NOTE:</strong> Focus is only trapped inside of the embedded iframe. The iframe&apos;s content cannot change this page in any way.</div><section class="example"><h1><a id="Example-Dialog-Tutorial" href="#Example-Dialog-Tutorial" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Example: Dialog Tutorial</h1><a class="jsbin-embed" href="https://jsbin.com/qawasag/embed?output">Dialog Tutorial on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.35.3"></script><p><a href="https://jsbin.com/qawasag/edit" target="_blank">play with the example on jsbin.com</a> or <a href="./dialog.example.html" target="_blank">open the source document</a></p></section>
 
     </main>
   </div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
+  <meta charset="utf-8">
   <title>ally.element.disabled - ally.js</title><link rel="canonical" href="http://allyjs.io/api/element/disabled.html">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../../assets/website.css">
@@ -116,6 +116,11 @@
           
           
           <li class="">
+            <a class="" href="../get/focus-redirect-target.html">ally.get.focusRedirectTarget</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="../get/focus-target.html">ally.get.focusTarget</a>
           </li>
           
@@ -137,6 +142,11 @@
           
           <li class="">
             <a class="" href="../get/shadow-host-parents.html">ally.get.shadowHostParents</a>
+          </li>
+          
+          
+          <li class="">
+            <a class="" href="../is/active-element.html">ally.is.activeElement</a>
           </li>
           
           
@@ -196,6 +206,11 @@
           
           
           <li class="">
+            <a class="" href="../maintain/tab-focus.html">ally.maintain.tabFocus</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="../map/attribute.html">ally.map.attribute</a>
           </li>
           
@@ -211,12 +226,22 @@
           
           
           <li class="">
+            <a class="" href="../observe/shadow-mutations.html">ally.observe.shadowMutations</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="../query/first-tabbable.html">ally.query.firstTabbable</a>
           </li>
           
           
           <li class="">
             <a class="" href="../query/focusable.html">ally.query.focusable</a>
+          </li>
+          
+          
+          <li class="">
+            <a class="" href="../query/shadow-hosts.html">ally.query.shadowHosts</a>
           </li>
           
           
@@ -305,6 +330,8 @@
           
           
           
+          
+          
           </ul>
         </nav>      </aside>
     </div>
@@ -313,7 +340,7 @@
       <h1><a id="ally-element-disabled" href="#ally-element-disabled" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>ally.element.disabled</h1>
 <p>Makes an element inert, i.e. not editable.</p>
 <h2><a id="Description" href="#Description" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Description</h2>
-<p>HTML knows the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/%253Adisabled"><code>:disabled</code></a> state for form elements, but lacks something similar for all the other interactive elements. This utility makes a form of this convenient state available to every element.</p>
+<p>HTML knows the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/%3Adisabled"><code>:disabled</code></a> state for form elements, but lacks something similar for all the other interactive elements. This utility makes a form of this convenient state available to every element.</p>
 <p>Elements that were made inert by <a href="#ally.element.disabled"><code>ally.element.disabled</code></a> can be identified in the DOM by the attribute <code>[data-ally-disabled=&quot;true&quot;]</code> to align with styling of other <code>:disabled</code> elements.</p>
 <p>The following things are done in order to make an element inert:</p>
 <ul>
@@ -351,7 +378,7 @@ var isDisabled = ally.element.disabled(element);
 <h3><a id="Throws" href="#Throws" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Throws</h3>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError"><code>TypeError</code></a> if <code>element</code> argument is not of type <code>HTMLElement</code>.</p>
 <h2><a id="Examples" href="#Examples" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Examples</h2>
-<section class="example"><h1><a id="Example-ally-element-disabled-Example" href="#Example-ally-element-disabled-Example" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Example: ally.element.disabled Example</h1><a class="jsbin-embed" href="https:/jsbin.com/cagazu/embed?output">ally.element.disabled Example on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.35.3"></script><p><a href="https:/jsbin.com/cagazu/edit" target="_blank">play with the example on jsbin.com</a> or <a href="./disabled.example.html" target="_blank">open the source document</a></p></section>
+<section class="example"><h1><a id="Example-ally-element-disabled-Example" href="#Example-ally-element-disabled-Example" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Example: ally.element.disabled Example</h1><a class="jsbin-embed" href="https://jsbin.com/cagazu/embed?output">ally.element.disabled Example on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.35.3"></script><p><a href="https://jsbin.com/cagazu/edit" target="_blank">play with the example on jsbin.com</a> or <a href="./disabled.example.html" target="_blank">open the source document</a></p></section>
 <h2><a id="Notes" href="#Notes" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Notes</h2>
 <div class="warning"><strong>WARNING:</strong> Internet Explorer 10 - 11 leave a few disabled elements focusable and thus editable to the mouse, but not keyboard focusable <a href="https://connect.microsoft.com/IE/feedbackdetail/view/962368">Trident 962368</a>, <a href="https://connect.microsoft.com/IE/feedbackdetail/view/817488">Trident 817488</a> (ally.js does not fix that). One can prevent this wrong behavior by adding <code>:disabled { pointer-events: none; }</code>.</div><div class="note"><strong>NOTE:</strong> In Google Chrome <code>&lt;audio controls&gt;</code> and <code>&lt;video controls&gt;</code> elements are made inert by removing the <code>controls</code> attribute - <a href="https://code.google.com/p/chromium/issues/detail?id=512133">Blink 512133</a></div>
 <h2><a id="Related-resources" href="#Related-resources" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Related resources</h2>

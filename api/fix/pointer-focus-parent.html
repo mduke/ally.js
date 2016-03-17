@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
+  <meta charset="utf-8">
   <title>ally.fix.pointerFocusParent - ally.js</title><link rel="canonical" href="http://allyjs.io/api/fix/pointer-focus-parent.html">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../../assets/website.css">
@@ -116,6 +116,11 @@
           
           
           <li class="">
+            <a class="" href="../get/focus-redirect-target.html">ally.get.focusRedirectTarget</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="../get/focus-target.html">ally.get.focusTarget</a>
           </li>
           
@@ -137,6 +142,11 @@
           
           <li class="">
             <a class="" href="../get/shadow-host-parents.html">ally.get.shadowHostParents</a>
+          </li>
+          
+          
+          <li class="">
+            <a class="" href="../is/active-element.html">ally.is.activeElement</a>
           </li>
           
           
@@ -196,6 +206,11 @@
           
           
           <li class="">
+            <a class="" href="../maintain/tab-focus.html">ally.maintain.tabFocus</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="../map/attribute.html">ally.map.attribute</a>
           </li>
           
@@ -211,12 +226,22 @@
           
           
           <li class="">
+            <a class="" href="../observe/shadow-mutations.html">ally.observe.shadowMutations</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="../query/first-tabbable.html">ally.query.firstTabbable</a>
           </li>
           
           
           <li class="">
             <a class="" href="../query/focusable.html">ally.query.focusable</a>
+          </li>
+          
+          
+          <li class="">
+            <a class="" href="../query/shadow-hosts.html">ally.query.shadowHosts</a>
           </li>
           
           
@@ -305,6 +330,8 @@
           
           
           
+          
+          
           </ul>
         </nav>      </aside>
     </div>
@@ -323,8 +350,8 @@
 var handle = ally.fix.pointerFocusParent();
 // disengage the workaround
 handle.disengage();
-
-// engage the workaround only for a sub-tree
+</code></pre>
+<pre><code class="language-javascript">// engage the workaround only for a sub-tree
 var handle = ally.fix.pointerFocusParent({
   context: &apos;#element-to-fix&apos;,
 });
@@ -342,7 +369,7 @@ var handle = ally.fix.pointerFocusParent({
 <p>A <a href="../concepts.html#Service"><code>&lt;service&gt;</code></a> interface, providing the <code>handle.disengage()</code> method to stop the service.</p>
 
 <h2><a id="Examples" href="#Examples" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Examples</h2>
-<section class="example"><h1><a id="Example-ally-fix-pointerFocusParent-Example" href="#Example-ally-fix-pointerFocusParent-Example" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Example: ally.fix.pointerFocusParent Example</h1><a class="jsbin-embed" href="https:/jsbin.com/modabo/embed?output">ally.fix.pointerFocusParent Example on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.35.3"></script><p><a href="https:/jsbin.com/modabo/edit" target="_blank">play with the example on jsbin.com</a> or <a href="./pointer-focus-parent.example.html" target="_blank">open the source document</a></p></section>
+<section class="example"><h1><a id="Example-ally-fix-pointerFocusParent-Example" href="#Example-ally-fix-pointerFocusParent-Example" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Example: ally.fix.pointerFocusParent Example</h1><a class="jsbin-embed" href="https://jsbin.com/modabo/embed?output">ally.fix.pointerFocusParent Example on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.35.3"></script><p><a href="https://jsbin.com/modabo/edit" target="_blank">play with the example on jsbin.com</a> or <a href="./pointer-focus-parent.example.html" target="_blank">open the source document</a></p></section>
 <h2><a id="Notes" href="#Notes" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Notes</h2>
 <div class="note"><strong>NOTE:</strong> Only engaged for WebKit (detected via via <a href="https://github.com/bestiejs/platform.js/">platform.js</a>).</div>
 <h2><a id="Related-resources" href="#Related-resources" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Related resources</h2>

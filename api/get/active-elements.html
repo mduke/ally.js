@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
+  <meta charset="utf-8">
   <title>ally.get.activeElements - ally.js</title><link rel="canonical" href="http://allyjs.io/api/get/active-elements.html">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../../assets/website.css">
@@ -107,6 +107,11 @@
           
           
           <li class="">
+            <a class="" href="focus-redirect-target.html">ally.get.focusRedirectTarget</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="focus-target.html">ally.get.focusTarget</a>
           </li>
           
@@ -128,6 +133,11 @@
           
           <li class="">
             <a class="" href="shadow-host-parents.html">ally.get.shadowHostParents</a>
+          </li>
+          
+          
+          <li class="">
+            <a class="" href="../is/active-element.html">ally.is.activeElement</a>
           </li>
           
           
@@ -187,6 +197,11 @@
           
           
           <li class="">
+            <a class="" href="../maintain/tab-focus.html">ally.maintain.tabFocus</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="../map/attribute.html">ally.map.attribute</a>
           </li>
           
@@ -202,12 +217,22 @@
           
           
           <li class="">
+            <a class="" href="../observe/shadow-mutations.html">ally.observe.shadowMutations</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="../query/first-tabbable.html">ally.query.firstTabbable</a>
           </li>
           
           
           <li class="">
             <a class="" href="../query/focusable.html">ally.query.focusable</a>
+          </li>
+          
+          
+          <li class="">
+            <a class="" href="../query/shadow-hosts.html">ally.query.shadowHosts</a>
           </li>
           
           
@@ -296,6 +321,8 @@
           
           
           
+          
+          
           </ul>
         </nav>      </aside>
     </div>
@@ -307,16 +334,7 @@
 <h2><a id="Usage" href="#Usage" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Usage</h2>
 <pre><code class="language-javascript">var elements = ally.get.activeElements();
 </code></pre>
-<h3><a id="Arguments" href="#Arguments" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Arguments</h3>
-<table>
-<thead>
-<tr><th>Name</th><th>Type</th><th>Default</th><th>Description</th></tr>
-</thead>
-<tbody>
-<tr><td>context</td><td><a href="../concepts.html#Selector"><code>&lt;selector&gt;</code></a></td><td><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/documentElement"><code>documentElement</code></a></td><td>The scope of the DOM in which to search. The first element of a collection is used.</td></tr>
-<tr><td>filter</td><td><a href="../concepts.html#Selector"><code>&lt;selector&gt;</code></a></td><td><em>required</em></td><td>The <em>significant elements</em> to exclude from the search.</td></tr>
-</tbody>
-</table>
+
 <h3><a id="Returns" href="#Returns" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Returns</h3>
 <p>Array of <a href="https://developer.mozilla.org/en/docs/Web/API/HTMLElement"><code>HTMLElement</code></a>.</p>
 

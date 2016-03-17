@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
+  <meta charset="utf-8">
   <title>Frequently asked questions - ally.js</title><link rel="canonical" href="http://allyjs.io/questions.html">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="assets/website.css">
@@ -41,6 +41,9 @@
   <div id="wrapper">
     <div id="navigation-column">
         <nav id="table-of-contents"><h1>On this page</h1><ul>
+        <li><a href="#Does-ally-js-support-Internet-Explorer-8-and-below">Does ally.js support Internet Explorer 8 and below?</a></li>
+        
+        
         <li><a href="#Do-I-need-ally-js-for-static-websites">Do I need ally.js for static websites?</a></li>
         
         
@@ -95,6 +98,14 @@
     <main id="main" tabindex="-1">
       <h1><a id="Frequently-asked-questions" href="#Frequently-asked-questions" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Frequently asked questions</h1>
 <p>There are a couple of questions we have been asked over and over again&#x2026;</p>
+<h2><a id="Does-ally-js-support-Internet-Explorer-8-and-below" href="#Does-ally-js-support-Internet-Explorer-8-and-below" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Does ally.js support Internet Explorer 8 and below?</h2>
+<p>The short answer is <em>no</em>. IE8 is too far behind on various APIs to make the existing code work. Additionally, our test system <a href="https://theintern.github.io/">Intern</a> does not run on IE8. Also <a href="https://www.microsoft.com/en-us/WindowsForBusiness/End-of-IE-support">Microsoft ended support for IE8 in January 2016</a>.</p>
+<p>While ally.js has not been tested to <em>run</em> on IE8, we have made sure that it can be <em>loaded</em> without problems. Since ally.js is compiled to ES5, you will need to load the <a href="https://github.com/es-shims/es5-shim/">es5-shim</a> in IE8:</p>
+<pre><code class="language-markup">&lt;!--[if lt IE 9]&gt;
+  &lt;script src=&quot;node_modules/es5-shim/es5-shim.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;node_modules/es5-shim/es5-sham.js&quot;&gt;&lt;/script&gt;
+&lt;![endif]--&gt;
+</code></pre>
 <h2><a id="Do-I-need-ally-js-for-static-websites" href="#Do-I-need-ally-js-for-static-websites" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Do I need ally.js for static websites?</h2>
 <p>Probably not. If you don&apos;t have any interactive widgets on your site, chances are ally.js is not going to do you much good. Except for maybe help <a href="api/index.html#Countering-browser-bugs">get around some non-JavaScript accessibility issues across browsers</a>.</p>
 <h2><a id="ally-not-a11y" href="#ally-not-a11y" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>&quot;ally&quot; not &quot;a11y&quot;?</h2>

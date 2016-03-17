@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>ally.is.focusable - ally.js</title><link rel="canonical" href="http://allyjs.io/api/is/focusable.html">
+  <title>ally.maintain.tabFocus - ally.js</title><link rel="canonical" href="http://allyjs.io/api/maintain/tab-focus.html">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../../assets/website.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.css" data-noprefix="">
@@ -47,6 +47,9 @@
         <li><a href="#Usage">Usage</a></li>
         
         
+        <li><a href="#Examples">Examples</a></li>
+        
+        
         <li><a href="#Changes">Changes</a></li>
         
         
@@ -61,8 +64,8 @@
       <aside>
         <h1>Contribute to this page</h1>
         <ul id="collaboration-links">
-          <li><a id="document-github-edit" href="https://github.com/medialize/ally.js/blob/master/docs/api/is/focusable.md">edit this page on github</a></li>
-          <li><a id="document-github-issue" data-title="ally.is.focusable" href="https://github.com/medialize/ally.js/issues/new?title=[ally.is.focusable]%20_your_problem_summary_">file an issue</a></li>
+          <li><a id="document-github-edit" href="https://github.com/medialize/ally.js/blob/master/docs/api/maintain/tab-focus.md">edit this page on github</a></li>
+          <li><a id="document-github-issue" data-title="ally.maintain.tabFocus" href="https://github.com/medialize/ally.js/issues/new?title=[ally.maintain.tabFocus]%20_your_problem_summary_">file an issue</a></li>
           <li></li>
         
       </ul></aside>
@@ -146,67 +149,67 @@
           
           
           <li class="">
-            <a class="" href="active-element.html">ally.is.activeElement</a>
+            <a class="" href="../is/active-element.html">ally.is.activeElement</a>
           </li>
           
           
           <li class="">
-            <a class="" href="disabled.html">ally.is.disabled</a>
+            <a class="" href="../is/disabled.html">ally.is.disabled</a>
+          </li>
+          
+          
+          <li class="">
+            <a class="" href="../is/focusable.html">ally.is.focusable</a>
+          </li>
+          
+          
+          <li class="">
+            <a class="" href="../is/focus-relevant.html">ally.is.focusRelevant</a>
+          </li>
+          
+          
+          <li class="">
+            <a class="" href="../is/only-tabbable.html">ally.is.onlyTabbable</a>
+          </li>
+          
+          
+          <li class="">
+            <a class="" href="../is/shadowed.html">ally.is.shadowed</a>
+          </li>
+          
+          
+          <li class="">
+            <a class="" href="../is/tabbable.html">ally.is.tabbable</a>
+          </li>
+          
+          
+          <li class="">
+            <a class="" href="../is/valid-area.html">ally.is.validArea</a>
+          </li>
+          
+          
+          <li class="">
+            <a class="" href="../is/valid-tabindex.html">ally.is.validTabindex</a>
+          </li>
+          
+          
+          <li class="">
+            <a class="" href="../is/visible.html">ally.is.visible</a>
+          </li>
+          
+          
+          <li class="">
+            <a class="" href="disabled.html">ally.maintain.disabled</a>
+          </li>
+          
+          
+          <li class="">
+            <a class="" href="hidden.html">ally.maintain.hidden</a>
           </li>
           
           
           <li class="active">
-            <a class="" href="focusable.html">ally.is.focusable</a>
-          </li>
-          
-          
-          <li class="">
-            <a class="" href="focus-relevant.html">ally.is.focusRelevant</a>
-          </li>
-          
-          
-          <li class="">
-            <a class="" href="only-tabbable.html">ally.is.onlyTabbable</a>
-          </li>
-          
-          
-          <li class="">
-            <a class="" href="shadowed.html">ally.is.shadowed</a>
-          </li>
-          
-          
-          <li class="">
-            <a class="" href="tabbable.html">ally.is.tabbable</a>
-          </li>
-          
-          
-          <li class="">
-            <a class="" href="valid-area.html">ally.is.validArea</a>
-          </li>
-          
-          
-          <li class="">
-            <a class="" href="valid-tabindex.html">ally.is.validTabindex</a>
-          </li>
-          
-          
-          <li class="">
-            <a class="" href="visible.html">ally.is.visible</a>
-          </li>
-          
-          
-          <li class="">
-            <a class="" href="../maintain/disabled.html">ally.maintain.disabled</a>
-          </li>
-          
-          
-          <li class="">
-            <a class="" href="../maintain/hidden.html">ally.maintain.hidden</a>
-          </li>
-          
-          
-          <li class="">
-            <a class="" href="../maintain/tab-focus.html">ally.maintain.tabFocus</a>
+            <a class="" href="tab-focus.html">ally.maintain.tabFocus</a>
           </li>
           
           
@@ -337,14 +340,17 @@
     </div>
 
     <main id="main" tabindex="-1">
-      <h1><a id="ally-is-focusable" href="#ally-is-focusable" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>ally.is.focusable</h1>
-<p>Determines if an element is considered focusable.</p>
+      <h1><a id="ally-maintain-tabFocus" href="#ally-maintain-tabFocus" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>ally.maintain.tabFocus</h1>
+<p>Traps <kbd>TAB</kbd> focus in the tabsequence to prevent the browser from shifting focus to its UI (e.g. the location bar).</p>
 <h2><a id="Description" href="#Description" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Description</h2>
-<p>An element is considered focusable if it is <a href="./focus-relevant.html"><code>ally.is.focusRelevant</code></a>, <a href="./visible.html"><code>ally.is.visible</code></a> and not <a href="./disabled.html"><code>ally.is.disabled</code></a>.</p>
-<p>Consult the data tables <a href="../../data-tables/focusable.html">what browsers consider focusable</a> and <a href="../../data-tables/focusable.is.html">what ally.js fails to consider focusable</a> to learn how HTML elements behave.</p>
+<p><code>ally.maintain.tabFocus</code> intercepts the keyboard events for <kbd>Tab</kbd> and <kbd>Shift Tab</kbd> in order to make sure the element receiving focus is part of the context element&apos;s tabsequence (<a href="../../concepts.html#Sequential-navigation-focus-order">Sequential Navigation Focus Order</a>). The tabsequence is obtained via <a href="../query/tabsequence.html"><code>ally.query.tabsequence</code></a> in order to follow the browser&apos;s rules of sorting the sequence.</p>
+<p>As focus can be shifted by various means, even other keyboard commands (e.g. via spatial navigation), it is also necessary to engage <a href="disabled.html"><code>ally.maintain.disabled</code></a>, whenever <code>ally.maintain.tabFocus</code> is engaged.</p>
 <h2><a id="Usage" href="#Usage" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Usage</h2>
-<pre><code class="language-javascript">var element = document.getElementById(&apos;victim&apos;);
-var isFocusable = ally.is.focusable(element);
+<pre><code class="language-javascript">var handle = ally.maintain.tabFocus({
+  context: &apos;.dialog&apos;,
+});
+
+handle.disengage();
 </code></pre>
 <h3><a id="Arguments" href="#Arguments" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Arguments</h3>
 <table>
@@ -352,47 +358,29 @@ var isFocusable = ally.is.focusable(element);
 <tr><th>Name</th><th>Type</th><th>Default</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td>element</td><td><a href="https://developer.mozilla.org/en/docs/Web/API/HTMLElement"><code>HTMLElement</code></a></td><td><em>required</em></td><td>The Element to test.</td></tr>
-</tbody>
-</table>
-<p>The underlying rules can also be accessed in the <a href="../concepts.html#Single-options-argument"><code>options</code> argument style</a> by calling <code>ally.is.focusable.rules(options)</code>:</p>
-<table>
-<thead>
-<tr><th>Name</th><th>Type</th><th>Default</th><th>Description</th></tr>
-</thead>
-<tbody>
-<tr><td>context</td><td><a href="../concepts.html#Selector"><code>&lt;selector&gt;</code></a></td><td><em>required</em></td><td>The element to examine. The first element of a collection is used.</td></tr>
-<tr><td>except</td><td><a href="../concepts.html#Focus-identification-exceptions"><code>&lt;focus identification exception&gt;</code></a></td><td><code>{}</code></td><td>The Element to test.</td></tr>
+<tr><td>context</td><td><a href="../concepts.html#Selector"><code>&lt;selector&gt;</code></a></td><td><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/documentElement"><code>documentElement</code></a></td><td>The scope of the DOM in which to consider the tabsequence. The first element of a collection is used.</td></tr>
 </tbody>
 </table>
 <h3><a id="Returns" href="#Returns" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Returns</h3>
-<p>Boolean, <code>true</code> if the element is focusable.</p>
-<h3><a id="Throws" href="#Throws" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Throws</h3>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError"><code>TypeError</code></a> if <code>element</code> argument is not of type <code>HTMLElement</code>.</p>
+<p>A <a href="../concepts.html#Service"><code>&lt;service&gt;</code></a> interface, providing the <code>handle.disengage()</code> method to stop the service.</p>
 
+<h2><a id="Examples" href="#Examples" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Examples</h2>
+<section class="example"><h1><a id="Example-ally-maintain-tabFocus-Example" href="#Example-ally-maintain-tabFocus-Example" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Example: ally.maintain.tabFocus Example</h1><a class="jsbin-embed" href="https://jsbin.com/keyazuh/embed?output">ally.maintain.tabFocus Example on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.35.3"></script><p><a href="https://jsbin.com/keyazuh/edit" target="_blank">play with the example on jsbin.com</a> or <a href="./tab-focus.example.html" target="_blank">open the source document</a></p></section>
 <h2><a id="Changes" href="#Changes" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Changes</h2>
 <ul>
-<li>Since <code>v1.1.0</code> all <code>&lt;area&gt;</code> elements are considered focus-relevant, but only valid <code>&lt;area&gt;</code> elements are considered focusable.</li>
-<li>Since <code>v1.1.0</code> exceptions can be passed to <code>ally.is.focusable.rules(options)</code>.</li>
-<li>Since <code>v1.1.0</code> the state of the <code>&lt;iframe&gt;</code> or <code>&lt;object&gt;</code> element in which the currently examined element is hosted in is considered.</li>
-<li>Since <code>v1.1.0</code> hidden <code>&lt;object&gt;</code> elements are focusable in Chrome - <a href="https://code.google.com/p/chromium/issues/detail?id=586191">Blink 586191</a>.</li>
+<li>Added in <code>v1.1.0</code>.</li>
 </ul>
 <h2><a id="Notes" href="#Notes" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Notes</h2>
-<p>See <a href="./focus-relevant.html#Notes"><code>ally.is.focusRelevant</code></a></p>
+<div class="warning"><strong>WARNING:</strong> As SVG elements cannot be focused by script in Internet Explorer and Firefox, these elements will not be part of the tabsequence, thus not reachable when <code>ally.maintain.tabFocus</code> is active.</div>
 <h2><a id="Related-resources" href="#Related-resources" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Related resources</h2>
 <ul>
-<li><p><a href="focus-relevant.html"><code>ally.is.focusRelevant</code></a> is used to identify elements that can receive focus</p></li>
-<li><p><a href="focusable.html"><code>ally.is.focusable</code></a> identifies elements that are focusable</p></li>
-<li><p><a href="../query/focusable.html"><code>ally.query.focusable</code></a> finds focusable elements in the DOM</p></li>
-<li><p><a href="valid-area.html"><code>ally.is.validArea</code></a> is used to identify if <code>&lt;area&gt;</code> elements satisfy the requirements to be considered focusable</p></li>
-<li><p><a href="../../data-tables/focusable.html">What Browsers Consider Focusable</a></p></li>
-<li><p><a href="../../data-tables/focusable.is.html">What ally.js fails to consider focusable</a></p></li>
+<li><a href="disabled.html"><code>ally.maintain.disabled</code></a> is a <a href="../concepts.html#Service">service</a> disabling interactive elements in the DOM</li>
 </ul>
 <h2><a id="Contributing" href="#Contributing" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Contributing</h2>
 <ul>
-<li><a href="https://github.com/medialize/ally.js/blob/master/src/is/focusable.js">module source</a></li>
-<li><a href="https://github.com/medialize/ally.js/blob/master/docs/api/is/focusable.md">document source</a></li>
-<li><a href="https://github.com/medialize/ally.js/blob/master/test/unit/is.focusable.test.js">unit test</a></li>
+<li><a href="https://github.com/medialize/ally.js/blob/master/src/maintain/tab-focus.js">module source</a></li>
+<li><a href="https://github.com/medialize/ally.js/blob/master/docs/api/maintain/tab-focus.md">document source</a></li>
+<li><a href="https://github.com/medialize/ally.js/blob/master/test/unit/maintain.tab-focus.test.js">unit test</a></li>
 </ul>
 
     </main>

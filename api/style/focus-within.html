@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
+  <meta charset="utf-8">
   <title>ally.style.focusWithin - ally.js</title><link rel="canonical" href="http://allyjs.io/api/style/focus-within.html">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../../assets/website.css">
@@ -116,6 +116,11 @@
           
           
           <li class="">
+            <a class="" href="../get/focus-redirect-target.html">ally.get.focusRedirectTarget</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="../get/focus-target.html">ally.get.focusTarget</a>
           </li>
           
@@ -137,6 +142,11 @@
           
           <li class="">
             <a class="" href="../get/shadow-host-parents.html">ally.get.shadowHostParents</a>
+          </li>
+          
+          
+          <li class="">
+            <a class="" href="../is/active-element.html">ally.is.activeElement</a>
           </li>
           
           
@@ -196,6 +206,11 @@
           
           
           <li class="">
+            <a class="" href="../maintain/tab-focus.html">ally.maintain.tabFocus</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="../map/attribute.html">ally.map.attribute</a>
           </li>
           
@@ -211,12 +226,22 @@
           
           
           <li class="">
+            <a class="" href="../observe/shadow-mutations.html">ally.observe.shadowMutations</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="../query/first-tabbable.html">ally.query.firstTabbable</a>
           </li>
           
           
           <li class="">
             <a class="" href="../query/focusable.html">ally.query.focusable</a>
+          </li>
+          
+          
+          <li class="">
+            <a class="" href="../query/shadow-hosts.html">ally.query.shadowHosts</a>
           </li>
           
           
@@ -305,6 +330,8 @@
           
           
           
+          
+          
           </ul>
         </nav>      </aside>
     </div>
@@ -352,7 +379,7 @@ body /deep/ .ally-focus-within {
 handle.disengage();
 </code></pre>
 <h2><a id="Examples" href="#Examples" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Examples</h2>
-<section class="example"><h1><a id="Example-ally-style-focusWithin-Example" href="#Example-ally-style-focusWithin-Example" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Example: ally.style.focusWithin Example</h1><a class="jsbin-embed" href="https:/jsbin.com/qohalu/embed?output">ally.style.focusWithin Example on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.35.3"></script><p><a href="https:/jsbin.com/qohalu/edit" target="_blank">play with the example on jsbin.com</a> or <a href="./focus-within.example.html" target="_blank">open the source document</a></p></section>
+<section class="example"><h1><a id="Example-ally-style-focusWithin-Example" href="#Example-ally-style-focusWithin-Example" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Example: ally.style.focusWithin Example</h1><a class="jsbin-embed" href="https://jsbin.com/qohalu/embed?output">ally.style.focusWithin Example on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.35.3"></script><p><a href="https://jsbin.com/qohalu/edit" target="_blank">play with the example on jsbin.com</a> or <a href="./focus-within.example.html" target="_blank">open the source document</a></p></section>
 <h2><a id="Notes" href="#Notes" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Notes</h2>
 <div class="note"><strong>NOTE:</strong> In Firefox the <a href="about:config">setting</a> <code>dom.webcomponents.enabled</code> needs to be set to <code>true</code> to enable ShadowDOM support.</div><div class="note"><strong>NOTE:</strong> Firefox 34 does not expose <code>ShadowRoot.host</code>, coupled with <code>document.activeElement</code> pointing to the wrong element, we cannot find the first ShadowHost and can thus not apply <code>focus-within</code> properly. The <code>ShadowRoot.host</code> issue has been fixed in Firefox 37 (at the latest).</div><div class="note"><strong>NOTE:</strong> The focus-within class is added asynchronously in Shadow DOM, but synchronously for the document.</div>
 <h2><a id="Related-resources" href="#Related-resources" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Related resources</h2>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
+  <meta charset="utf-8">
   <title>ally.get.focusTarget - ally.js</title><link rel="canonical" href="http://allyjs.io/api/get/focus-target.html">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../../assets/website.css">
@@ -45,6 +45,12 @@
         
         
         <li><a href="#Usage">Usage</a></li>
+        
+        
+        <li><a href="#Changes">Changes</a></li>
+        
+        
+        <li><a href="#Notes">Notes</a></li>
         
         
         <li><a href="#Contributing">Contributing</a></li>
@@ -106,6 +112,11 @@
           </li>
           
           
+          <li class="">
+            <a class="" href="focus-redirect-target.html">ally.get.focusRedirectTarget</a>
+          </li>
+          
+          
           <li class="active">
             <a class="" href="focus-target.html">ally.get.focusTarget</a>
           </li>
@@ -128,6 +139,11 @@
           
           <li class="">
             <a class="" href="shadow-host-parents.html">ally.get.shadowHostParents</a>
+          </li>
+          
+          
+          <li class="">
+            <a class="" href="../is/active-element.html">ally.is.activeElement</a>
           </li>
           
           
@@ -187,6 +203,11 @@
           
           
           <li class="">
+            <a class="" href="../maintain/tab-focus.html">ally.maintain.tabFocus</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="../map/attribute.html">ally.map.attribute</a>
           </li>
           
@@ -202,12 +223,22 @@
           
           
           <li class="">
+            <a class="" href="../observe/shadow-mutations.html">ally.observe.shadowMutations</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="../query/first-tabbable.html">ally.query.firstTabbable</a>
           </li>
           
           
           <li class="">
             <a class="" href="../query/focusable.html">ally.query.focusable</a>
+          </li>
+          
+          
+          <li class="">
+            <a class="" href="../query/shadow-hosts.html">ally.query.shadowHosts</a>
           </li>
           
           
@@ -296,6 +327,8 @@
           
           
           
+          
+          
           </ul>
         </nav>      </aside>
     </div>
@@ -309,6 +342,10 @@
   &lt;p&gt;Hello &lt;span&gt;World&lt;/span&gt;!&lt;/p&gt;
 &lt;/div&gt;
 </code></pre>
+<p>When clicking on the <code>&lt;label&gt;</code> element, focus is given to the <code>&lt;input&gt;</code>, because it&apos;s the referenced form control.</p>
+<pre><code class="language-markup">&lt;label for=&quot;world&quot;&gt;Hello&lt;/label&gt;
+&lt;input id=&quot;world&quot; type=&quot;text&quot;&gt;
+</code></pre>
 <h2><a id="Usage" href="#Usage" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Usage</h2>
 <pre><code class="language-javascript">var element = ally.get.focusTarget({
   context: &apos;#element-to-start-from&apos;,
@@ -321,6 +358,7 @@
 </thead>
 <tbody>
 <tr><td>context</td><td><a href="../concepts.html#Selector"><code>&lt;selector&gt;</code></a></td><td><em>required</em></td><td>The element to start searching from. The first element of a collection is used.</td></tr>
+<tr><td>except</td><td><a href="../concepts.html#Focus-identification-exceptions"><code>&lt;focus identification exception&gt;</code></a></td><td><code>{}</code></td><td>The Element to test.</td></tr>
 </tbody>
 </table>
 <h3><a id="Returns" href="#Returns" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Returns</h3>
@@ -328,7 +366,13 @@
 <h3><a id="Throws" href="#Throws" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Throws</h3>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError"><code>TypeError</code></a> if <code>context</code> option is not specified.</p>
 
-
+<h2><a id="Changes" href="#Changes" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Changes</h2>
+<ul>
+<li>Since <code>v1.1.0</code> elements redirecting focus return their target elements.</li>
+<li>Since <code>v1.1.0</code> exceptions can be passed through to <code>ally.is.focusable</code> via the <code>except</code> argument.</li>
+</ul>
+<h2><a id="Notes" href="#Notes" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Notes</h2>
+<p>See <a href="./focus-redirect-target.html#Notes"><code>ally.get.focusRedirectTarget</code></a></p>
 
 <h2><a id="Contributing" href="#Contributing" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Contributing</h2>
 <ul>

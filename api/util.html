@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
+  <meta charset="utf-8">
   <title>Utilities - ally.js</title><link rel="canonical" href="http://allyjs.io/api/util.html">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../assets/website.css">
@@ -101,6 +101,11 @@
           
           
           <li class="">
+            <a class="" href="get/focus-redirect-target.html">ally.get.focusRedirectTarget</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="get/focus-target.html">ally.get.focusTarget</a>
           </li>
           
@@ -122,6 +127,11 @@
           
           <li class="">
             <a class="" href="get/shadow-host-parents.html">ally.get.shadowHostParents</a>
+          </li>
+          
+          
+          <li class="">
+            <a class="" href="is/active-element.html">ally.is.activeElement</a>
           </li>
           
           
@@ -181,6 +191,11 @@
           
           
           <li class="">
+            <a class="" href="maintain/tab-focus.html">ally.maintain.tabFocus</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="map/attribute.html">ally.map.attribute</a>
           </li>
           
@@ -196,12 +211,22 @@
           
           
           <li class="">
+            <a class="" href="observe/shadow-mutations.html">ally.observe.shadowMutations</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="query/first-tabbable.html">ally.query.firstTabbable</a>
           </li>
           
           
           <li class="">
             <a class="" href="query/focusable.html">ally.query.focusable</a>
+          </li>
+          
+          
+          <li class="">
+            <a class="" href="query/shadow-hosts.html">ally.query.shadowHosts</a>
           </li>
           
           
@@ -290,6 +315,8 @@
           
           
           
+          
+          
           </ul>
         </nav>      </aside>
     </div>
@@ -298,6 +325,10 @@
       <h1><a id="Utilities" href="#Utilities" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Utilities</h1>
 <p>the util infrastructure does not contain any functionality relevant to a user of ally.js. It merely contains code supporting other components, e.g. to ensure consistent component function signatures for a consistent APIs. To be honest, it&apos;s also the dumping ground for everything that didn&apos;t fit into one of the other buckets. None of these functions are available through the <code>ally</code> object exposed by the production file <code>dist/ally.min.js</code>, but are very much accessible via modules.</p>
 <h2><a id="Contributing" href="#Contributing" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Contributing</h2>
+<h3><a id="Platform" href="#Platform" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Platform</h3>
+<p>In order to make using <a href="https://github.com/bestiejs/platform.js">platform.js</a> even simpler, this utility adds the few verifications ally.js actually needs.</p>
+<h3><a id="Logger" href="#Logger" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Logger</h3>
+<p>In order to safely access - and in the future possibly mutate - any calls to <code>console.log</code> et al, we&apos;re importing the logger utility, rather than referencing <code>console.*</code> directly.</p>
 <h3><a id="Translate-input-to-node-array" href="#Translate-input-to-node-array" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Translate input to node array</h3>
 <p>Internally ally.js prefers to use Arrays of Nodes, but when accepting input from the outside we&apos;re not sure what we get. NodeList, HTMLCollection, jQuery object, a single Node or even just a string (to run through <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll">document.querySelectorAll</a>) - <code>util/node-array.js</code> converts everything to array.</p>
 <h3><a id="Context-to-element" href="#Context-to-element" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Context to element</h3>
@@ -309,8 +340,8 @@
   return {
     disengage: function() {
       component.disengage();
-    }
-  }
+    },
+  };
 }
 </code></pre>
 <p>The &quot;service&quot; aspect here is that a components <code>engage()</code> function can be invoked from anyone anywhere anytime without having to track if the component has already been initialized before. This is made possible by a simple reference counter. If three components <code>engage()</code> but only two <code>disengage()</code>, the <code>component.disengage()</code> is never executed. Only after the last reference has been <code>disengage()</code>d, the component is told to teardown. It is possible to force teardown by executing <code>disengage({force: true})</code>.</p>
@@ -327,14 +358,16 @@
       context.forEach(function(element) {
         component.disengage(element);
       });
-    }
-  }
+    },
+  };
 }
 </code></pre>
 <p>Unlike the singleton decorator, the context decorator allows multiple concurrent instances of a component. There is no need for counting references - <code>disengage()</code>ing is the library user&apos;s obligation.</p>
 <p>A component&apos;s <code>engage()</code> function may return an result object. The decorated <code>disengage()</code> function is added to that result object and returned to the caller. Unlike the singleton decorator, the context decorator returns a unique result object for every <code>engage()</code> invocation.</p>
-<h3><a id="Sort-elements-by-tabindex" href="#Sort-elements-by-tabindex" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Sort elements by tabindex</h3>
-<p><code>util/sort-elements-by-tabindex</code> is a function to sort a list of elements in such a way that elements with a positive tabindex (e.g. <code>[tabindex=&quot;4&quot;]</code>) come first in ascending order and the other nodes remain in DOM order.</p>
+<h3><a id="Sort-elements-according-to-DOM-order" href="#Sort-elements-according-to-DOM-order" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Sort elements according to DOM order</h3>
+<p><code>util/sort-dom-order</code> sorts an <code>Array</code> of elements according to their relative position in the DOM.</p>
+<h3><a id="Merge-elements-according-to-DOM-order" href="#Merge-elements-according-to-DOM-order" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Merge elements according to DOM order</h3>
+<p><code>util/merge-dom-order</code> merges an <code>Array</code> of elements with another <code>Array</code> of elements so that the resulting array&apos;s sorting order corresponds to DOM each element&apos;s relative position in the DOM.</p>
 <h3><a id="Retrieve-tabindex-value" href="#Retrieve-tabindex-value" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Retrieve tabindex value</h3>
 <p><code>util/tabindex-value</code> returns the value of the tabindex attribute (not property!) as an integer, or null for missing or invalid values</p>
 <h3><a id="Calculate-an-element-s-visible-area" href="#Calculate-an-element-s-visible-area" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Calculate an element&apos;s visible area</h3>
@@ -343,6 +376,15 @@
 <p><code>util/compare-position</code> provides utilities for comparing the relative position of elements in the DOM for use with higher order functions (such as <code>Array.map</code>)</p>
 <h3><a id="Toggle-attribute-value" href="#Toggle-attribute-value" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Toggle attribute value</h3>
 <p><code>util/toggle-attribute-value</code> can will change an attribute&apos;s value, while saving its former value to allow restoring the previous state</p>
+<h3><a id="Select-in-ShadowDOM" href="#Select-in-ShadowDOM" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Select in ShadowDOM</h3>
+<p><code>util/select-in-shadows</code> mutates a given CSS selector in order to make it match elements in ShadowDOM as well.</p>
+<h3><a id="Get-a-Node-s-document-window-and-content-document" href="#Get-a-Node-s-document-window-and-content-document" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Get a Node&apos;s document, window and content document</h3>
+<ul>
+<li><code>util/get-content-document</code> returns the <code>document</code> representing the content of an <code>&lt;iframe&gt;</code> or <code>&lt;object&gt;</code> element.</li>
+<li><code>util/get-document</code> returns the <code>document</code> an element is attached to.* <code>util/get-document</code> returns the <code>document</code> an element is attached to.</li>
+<li><code>util/get-frame-element</code> returns the <code>&lt;iframe&gt;</code> or <code>&lt;object&gt;</code> the element is hosted in.</li>
+<li><code>util/get-window</code> returns the <code>window</code> (also known as <code>defaultView</code>) of the document and element is attached to.<code>util/get-window</code> returns the <code>window</code> (also known as <code>defaultView</code>) of the document and element is attached to.</li>
+</ul>
 
     </main>
   </div>

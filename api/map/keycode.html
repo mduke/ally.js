@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
+  <meta charset="utf-8">
   <title>ally.map.keycode - ally.js</title><link rel="canonical" href="http://allyjs.io/api/map/keycode.html">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../../assets/website.css">
@@ -45,6 +45,15 @@
         
         
         <li><a href="#Usage">Usage</a></li>
+        
+        
+        <li><a href="#Changes">Changes</a></li>
+        
+        
+        <li><a href="#Notes">Notes</a></li>
+        
+        
+        <li><a href="#Related-resources">Related resources</a></li>
         
         
         <li><a href="#Contributing">Contributing</a></li>
@@ -107,6 +116,11 @@
           
           
           <li class="">
+            <a class="" href="../get/focus-redirect-target.html">ally.get.focusRedirectTarget</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="../get/focus-target.html">ally.get.focusTarget</a>
           </li>
           
@@ -128,6 +142,11 @@
           
           <li class="">
             <a class="" href="../get/shadow-host-parents.html">ally.get.shadowHostParents</a>
+          </li>
+          
+          
+          <li class="">
+            <a class="" href="../is/active-element.html">ally.is.activeElement</a>
           </li>
           
           
@@ -187,6 +206,11 @@
           
           
           <li class="">
+            <a class="" href="../maintain/tab-focus.html">ally.maintain.tabFocus</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="attribute.html">ally.map.attribute</a>
           </li>
           
@@ -202,12 +226,22 @@
           
           
           <li class="">
+            <a class="" href="../observe/shadow-mutations.html">ally.observe.shadowMutations</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="../query/first-tabbable.html">ally.query.firstTabbable</a>
           </li>
           
           
           <li class="">
             <a class="" href="../query/focusable.html">ally.query.focusable</a>
+          </li>
+          
+          
+          <li class="">
+            <a class="" href="../query/shadow-hosts.html">ally.query.shadowHosts</a>
           </li>
           
           
@@ -296,13 +330,15 @@
           
           
           
+          
+          
           </ul>
         </nav>      </aside>
     </div>
 
     <main id="main" tabindex="-1">
       <h1><a id="ally-map-keycode" href="#ally-map-keycode" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>ally.map.keycode</h1>
-<p>Map of control <a href="https://developer.mozilla.org/en-US/docs/Web/API/event.keyCode"><code>event.keyCode</code></a>s.</p>
+<p>Map human readable names for <a href="https://developer.mozilla.org/en-US/docs/Web/API/event.keyCode"><code>event.keyCode</code></a>s.</p>
 <h2><a id="Description" href="#Description" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Description</h2>
 <pre><code class="language-javascript">// example structure
 var map = {
@@ -319,12 +355,52 @@ var map = {
   enter: 13,
   escape: 27,
   space: 32,
-}
-</code></pre>
-<h2><a id="Usage" href="#Usage" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Usage</h2>
-<pre><code class="language-javascript">console.log(ally.map.keycode.enter);
-</code></pre>
 
+  // Function keys
+  f1: 112,
+  // ...
+
+  // Numeric keys
+  0: 48,
+  1: 49,
+  // ...
+  &apos;num-0&apos;: 96,
+  &apos;num-1&apos;: 97,
+  // ...
+
+  // Latin characters
+  a: 65,
+  // ...
+  z: 90,
+};
+</code></pre>
+<p>The map knows the following keys:</p>
+<ul>
+<li><code>a</code> - <code>z</code></li>
+<li><code>0</code> - <code>9</code></li>
+<li><code>num-0</code> - <code>num-9</code> (number block)</li>
+<li><code>f1</code> - <code>f25</code> (function keys)</li>
+<li><code>down</code>, <code>left</code>, <code>right</code>, <code>up</code> (arrow keys)</li>
+<li><code>end</code>, <code>home</code>, <code>pageDown</code>, <code>page-down</code>, <code>pageUp</code>, <code>page-up</code></li>
+<li><code>enter</code>, <code>escape</code>, <code>space</code>, <code>tab</code></li>
+<li><code>alt</code>, <code>capsLock</code>, <code>caps-lock</code>, <code>ctrl</code>, <code>meta</code>, <code>shift</code></li>
+<li><code>pause</code>, <code>insert</code>, <code>delete</code>, <code>backspace</code></li>
+</ul>
+<h2><a id="Usage" href="#Usage" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Usage</h2>
+<pre><code class="language-javascript">console.log(&apos;keycode of enter&apos;, ally.map.keycode.enter);
+</code></pre>
+<h2><a id="Changes" href="#Changes" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Changes</h2>
+<ul>
+<li><code>v1.1.0</code> replaced the key <code>command</code> by <code>meta</code>.</li>
+<li><code>v1.1.0</code> added <code>a</code> - <code>z</code>, <code>0</code> - <code>9</code>, <code>num-0</code> - <code>num-9</code>, <code>f13</code> - <code>f25</code>, <code>page-down</code>, <code>page-up</code>, <code>caps-lock</code>.</li>
+<li><code>v1.1.0</code> added <code>_alias</code> to resolve multiple keyCodes for the same logical key.</li>
+</ul>
+<h2><a id="Notes" href="#Notes" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Notes</h2>
+<div class="note"><strong>NOTE:</strong> The key <code>meta</code> is known by different keyCodes: <code>91</code>, <code>92</code>, <code>93</code>, <code>224</code> - which <code>ally.map.keycodes.alias.91</code> helps to resolve. The same is true for numeric keys (0-9) and their counterparts on the numblock.</div>
+<h2><a id="Related-resources" href="#Related-resources" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Related resources</h2>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key"><code>KeyboardEvent.key</code></a> may help deal with this mess in the future.</li>
+</ul>
 <h2><a id="Contributing" href="#Contributing" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Contributing</h2>
 <ul>
 <li><a href="https://github.com/medialize/ally.js/blob/master/src/map/keycode.js">module source</a></li>

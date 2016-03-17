@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
+  <meta charset="utf-8">
   <title>Build infrastructure - ally.js</title><link rel="canonical" href="http://allyjs.io/contributing/build.html">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../assets/website.css">
@@ -92,6 +92,7 @@
       <h1><a id="Build-infrastructure" href="#Build-infrastructure" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Build infrastructure</h1>
 <p>The build infrastructure consists of a few tools made available through <code>npm run</code> commands.</p>
 <p>This document is concerned with building the JavaScript source code. See <a href="docs.html">Documentation Infrastructure</a> for how the documentation and website are generated.</p>
+<div class="note"><strong>NOTE:</strong> If this is your first contact with ally.js, make sure to run <code>npm run init</code> after cloning the repository. This will run <code>npm install</code>, <code>npm run build</code> and <code>npm run build:website</code> to make sure your local copy is ready.</div>
 <h2><a id="Building" href="#Building" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Building</h2>
 <pre><code class="language-bash"># build everything
 npm run build
@@ -151,7 +152,6 @@ npm run watch:amd
 <hr>
 <h2><a id="Linting" href="#Linting" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Linting</h2>
 <p>Since ally.js is using the ES6 Module Syntax - and <a href="https://github.com/eslint/eslint">eslint</a> does not support that yet - we&apos;re using <a href="https://github.com/babel/babel-eslint">babel-eslint</a> as the parser in eslint and configured via <a href="https://github.com/medialize/ally.js/blob/master/.eslintrc"><code>.eslintrc</code></a>. See the docs to understand the <a href="http://eslint.org/docs/rules">rules</a>.</p>
-<p>While code style is validated using eslint, code format is verified using <a href="http://jscs.info/overview.html">jscs</a> and configured via <a href="https://github.com/medialize/ally.js/blob/master/.jscsrc"><code>.jscsrc</code></a>.</p>
 <dl><dt>Note:</dt><dd> Although listed in the devDependencies of package.json and thus installed locally, babel-eslint has to be installed globally:</dd></dl>
 <pre><code class="language-bash">npm install -g babel-eslint
 </code></pre>
@@ -169,7 +169,7 @@ npm run lint:md
 <hr>
 <h2><a id="ES6-in-older-browsers" href="#ES6-in-older-browsers" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>ES6 in older browsers</h2>
 <p>Currently only a single ES6 function <code>Array.prototype.findIndex</code> is used in ally.js. Should we choose to use more ES6 functions, possibly things like <code>Set</code> and <code>Map</code>, we would have to include the <a href="http://babeljs.io/docs/usage/polyfill/">babel polyfill</a> in our distribution. This step should not be taken lightly, as the polyfill is a heavyweight.</p>
-<pre><code class="language-javascript">npm install babel-core
+<pre><code class="language-bash">npm install babel-core
 cat node_modules/babel-core/browser-polyfill.js dist/ally.js &gt; dist/ally.old-browser.js
 </code></pre>
 

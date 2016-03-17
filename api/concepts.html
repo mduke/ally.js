@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
+  <meta charset="utf-8">
   <title>API concepts - ally.js</title><link rel="canonical" href="http://allyjs.io/api/concepts.html">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../assets/website.css">
@@ -45,6 +45,9 @@
         
         
         <li><a href="#Selector">Selector</a></li>
+        
+        
+        <li><a href="#Focus-identification-exceptions">Focus identification exceptions</a></li>
         
         
         <li><a href="#Service">Service</a></li>
@@ -107,6 +110,11 @@
           
           
           <li class="">
+            <a class="" href="get/focus-redirect-target.html">ally.get.focusRedirectTarget</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="get/focus-target.html">ally.get.focusTarget</a>
           </li>
           
@@ -128,6 +136,11 @@
           
           <li class="">
             <a class="" href="get/shadow-host-parents.html">ally.get.shadowHostParents</a>
+          </li>
+          
+          
+          <li class="">
+            <a class="" href="is/active-element.html">ally.is.activeElement</a>
           </li>
           
           
@@ -187,6 +200,11 @@
           
           
           <li class="">
+            <a class="" href="maintain/tab-focus.html">ally.maintain.tabFocus</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="map/attribute.html">ally.map.attribute</a>
           </li>
           
@@ -202,12 +220,22 @@
           
           
           <li class="">
+            <a class="" href="observe/shadow-mutations.html">ally.observe.shadowMutations</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="query/first-tabbable.html">ally.query.firstTabbable</a>
           </li>
           
           
           <li class="">
             <a class="" href="query/focusable.html">ally.query.focusable</a>
+          </li>
+          
+          
+          <li class="">
+            <a class="" href="query/shadow-hosts.html">ally.query.shadowHosts</a>
           </li>
           
           
@@ -296,6 +324,8 @@
           
           
           
+          
+          
           </ul>
         </nav>      </aside>
     </div>
@@ -327,6 +357,27 @@ exampleWithOptions({
 <li><a href="https://developer.mozilla.org/en/docs/Web/API/HTMLCollection"><code>HTMLCollection</code></a></li>
 <li><a href="http://api.jquery.com/jQuery/"><code>jQuery</code></a> instance</li>
 </ul>
+<h2><a id="Focus-identification-exceptions" href="#Focus-identification-exceptions" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Focus identification exceptions</h2>
+<p>Modules dealing with the focus identity of elements (e.g. the <code>rules()</code> functions of <code>ally.is.focusable</code>, <code>ally.is.tabbable</code>, &#x2026;) may accept an options object called <code>except</code> to customize the way focus identity is determined.</p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Default</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>flexbox</td><td>boolean</td><td><code>false</code></td><td>Prevent elements from being considered focus-relevant because of having Flexbox layout.</td></tr>
+<tr><td>scrollable</td><td>boolean</td><td><code>false</code></td><td>Prevent elements from being considered focus-relevant because of being scrollable.</td></tr>
+<tr><td>shadow</td><td>boolean</td><td><code>false</code></td><td>Prevent elements from being considered focus-relevant because of being a <code>ShadowHost</code>.</td></tr>
+<tr><td>disabled</td><td>boolean</td><td><code>false</code></td><td>Prevent elements from <em>not</em> being considered focusable because they&apos;re disabled (e.g. <code>&lt;input disabled&gt;</code>).</td></tr>
+<tr><td>visible</td><td>boolean</td><td><code>false</code></td><td>Prevent elements from <em>not</em> being considered focusable because they&apos;re hidden (e.g. <code>&lt;input style=&quot;display: none&quot;&gt;</code>).</td></tr>
+<tr><td>onlyFocusableBrowsingContext</td><td>boolean <code>false</code></td><td>Prevent elements from <em>not</em> being considered focusable if their browsing context host element (e.g. <code>&lt;iframe&gt;</code>, <code>&lt;object&gt;</code>) has <code>tabindex=&quot;-1&quot;</code> set.</td></tr>
+<tr><td>onlyTabbable</td><td>boolean</td><td><code>false</code></td><td>Prevent elements from <em>not</em> being considered focusable because they&apos;re only keyboard focusable.</td></tr>
+<tr><td>notRendered</td><td>boolean</td><td><code>false</code></td><td>Prevent elements from being considered visible that can&apos;t be rendered (e.g. <code>&lt;area&gt;</code>).</td></tr>
+<tr><td>cssDisplay</td><td>boolean</td><td><code>false</code></td><td>Prevent elements from being considered invisible because of <code>display: none</code>.</td></tr>
+<tr><td>cssVisibility</td><td>boolean</td><td><code>false</code></td><td>Prevent elements from being considered invisible because of <code>visibility: hidden</code>.</td></tr>
+<tr><td>detailsElement</td><td>boolean</td><td><code>false</code></td><td>Prevent elements from being considered invisible because of being nested in a closed <code>&lt;details&gt;</code> element.</td></tr>
+<tr><td>browsingContext</td><td>boolean</td><td><code>false</code></td><td>Prevent elements from being considered invisible because of being nested in an invisible browsing context (<code>&lt;iframe&gt;</code> or <code>&lt;object&gt;</code>).</td></tr>
+</tbody>
+</table>
 <h2><a id="Service" href="#Service" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Service</h2>
 <p>A Service (<code>&lt;service&gt;</code>) is a utility that continuously performs an action. A service usually observes the DOM or waits for events to be processed. Services can be started and stopped. Think of services as event listeners that you attach and remove when necessary. But unlike disconnect between <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener"><code>addEventListener()</code></a> and <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener"><code>removeEventListener()</code></a>, ally.js services make it easy to disengage (stop, remove, abort, &#x2026;):</p>
 <pre><code class="language-javascript">// start a service

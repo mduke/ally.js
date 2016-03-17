@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
+  <meta charset="utf-8">
   <title>API index - ally.js</title><link rel="canonical" href="http://allyjs.io/api/index.html">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../assets/website.css">
@@ -131,6 +131,11 @@
           
           
           <li class="">
+            <a class="" href="get/focus-redirect-target.html">ally.get.focusRedirectTarget</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="get/focus-target.html">ally.get.focusTarget</a>
           </li>
           
@@ -152,6 +157,11 @@
           
           <li class="">
             <a class="" href="get/shadow-host-parents.html">ally.get.shadowHostParents</a>
+          </li>
+          
+          
+          <li class="">
+            <a class="" href="is/active-element.html">ally.is.activeElement</a>
           </li>
           
           
@@ -211,6 +221,11 @@
           
           
           <li class="">
+            <a class="" href="maintain/tab-focus.html">ally.maintain.tabFocus</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="map/attribute.html">ally.map.attribute</a>
           </li>
           
@@ -226,12 +241,22 @@
           
           
           <li class="">
+            <a class="" href="observe/shadow-mutations.html">ally.observe.shadowMutations</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="query/first-tabbable.html">ally.query.firstTabbable</a>
           </li>
           
           
           <li class="">
             <a class="" href="query/focusable.html">ally.query.focusable</a>
+          </li>
+          
+          
+          <li class="">
+            <a class="" href="query/shadow-hosts.html">ally.query.shadowHosts</a>
           </li>
           
           
@@ -320,6 +345,8 @@
           
           
           
+          
+          
           </ul>
         </nav>      </aside>
     </div>
@@ -345,18 +372,21 @@
 <ul>
 <li><a href="maintain/disabled.html"><code>ally.maintain.disabled</code></a> renders elements inert to prevent any user interaction</li>
 <li><a href="maintain/hidden.html"><code>ally.maintain.hidden</code></a> sets <code>aria-hidden=&quot;true&quot;</code> on insignificant branches</li>
+<li><a href="maintain/tab-focus.html"><code>ally.maintain.tabFocus</code></a> traps <kbd>TAB</kbd> focus in the tabsequence</li>
 </ul>
 <h2><a id="Finding-elements" href="#Finding-elements" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Finding elements</h2>
 <p>In order to work with focusable elements, we must first know which elements we&apos;re supposed to work with. See <a href="../what-is-focusable.html">what does &quot;focusable&quot; mean?</a> for a differentiation.</p>
 <ul>
 <li><a href="query/first-tabbable.html"><code>ally.query.firstTabbable</code></a> finds the first keyboard focusable element</li>
 <li><a href="query/focusable.html"><code>ally.query.focusable</code></a> finds all focusable elements</li>
-<li><a href="query/tabbable.html"><code>ally.query.tabbable</code></a> finds all keyboard focusable elements</li>
-<li><a href="query/tabsequence.html"><code>ally.query.tabsequence</code></a> finds all keyboard focusable elements respecting the <code>[tabindex]</code> order</li>
+<li><a href="query/shadow-hosts.html"><code>ally.query.shadowHosts</code></a> finds all elements hosting a <code>ShadowRoot</code></li>
+<li><a href="query/tabbable.html"><code>ally.query.tabbable</code></a> finds all keyboard focusable elements in DOM order</li>
+<li><a href="query/tabsequence.html"><code>ally.query.tabsequence</code></a> finds all keyboard focusable elements in <a href="../../concepts.html#Sequential-navigation-focus-order">Sequential Navigation Focus Order</a></li>
 </ul>
 <h2><a id="Element-state" href="#Element-state" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Element state</h2>
 <p>Unlike any other ally modules, these components do not take take <a href="concepts.html#Single-options-argument"><code>options.context</code> argument</a>, but expect the <code>element</code> as first argument, allowing easy use in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter"><code>.filter()</code></a>. See <a href="../what-is-focusable.html">what does &quot;focusable&quot; mean?</a> for a differentiation.</p>
 <ul>
+<li><a href="is/active-element.html"><code>ally.is.activeElement</code></a> returns true if the element is the activeElement of its host context, i.e. its document, iFrame or ShadowHost</li>
 <li><a href="is/disabled.html"><code>ally.is.disabled</code></a> returns true if the element is <code>:disabled</code></li>
 <li><a href="is/focus-relevant.html"><code>ally.is.focusRelevant</code></a> returns true if the element is considered theoretically focusable</li>
 <li><a href="is/focusable.html"><code>ally.is.focusable</code></a> returns true if the element is considered focusable by script</li>
@@ -398,6 +428,7 @@
 <ul>
 <li><a href="get/active-elements.html"><code>ally.get.activeElements</code></a> identifies the <code>ShadowHost</code> ancestry of the active element</li>
 <li><a href="get/insignificant-branches.html"><code>ally.get.insignificantBranches</code></a></li>
+<li><a href="get/focus-redirect-target.html"><code>ally.get.focusRedirectTarget</code></a></li>
 <li><a href="get/focus-target.html"><code>ally.get.focusTarget</code></a></li>
 <li><a href="get/parents.html"><code>ally.get.parents</code></a></li>
 <li><a href="get/shadow-host-parents.html"><code>ally.get.shadowHostParents</code></a></li>
@@ -413,6 +444,7 @@
 <p>Translate volatile events to stateful interfaces</p>
 <ul>
 <li><a href="observe/interaction-type.html"><code>ally.observe.interactionType</code></a> observes user interaction method to distinguish pointer and keyboard actions</li>
+<li><a href="observe/shadow-mutations.html"><code>ally.observe.shadowMutations</code></a> registers <code>MutationObserver</code>s across nested <code>ShadowRoot</code>s</li>
 </ul>
 <hr>
 <h2><a id="Contributor-modules" href="#Contributor-modules" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Contributor modules</h2>

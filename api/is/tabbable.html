@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
+  <meta charset="utf-8">
   <title>ally.is.tabbable - ally.js</title><link rel="canonical" href="http://allyjs.io/api/is/tabbable.html">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../../assets/website.css">
@@ -45,6 +45,9 @@
         
         
         <li><a href="#Usage">Usage</a></li>
+        
+        
+        <li><a href="#Changes">Changes</a></li>
         
         
         <li><a href="#Notes">Notes</a></li>
@@ -113,6 +116,11 @@
           
           
           <li class="">
+            <a class="" href="../get/focus-redirect-target.html">ally.get.focusRedirectTarget</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="../get/focus-target.html">ally.get.focusTarget</a>
           </li>
           
@@ -134,6 +142,11 @@
           
           <li class="">
             <a class="" href="../get/shadow-host-parents.html">ally.get.shadowHostParents</a>
+          </li>
+          
+          
+          <li class="">
+            <a class="" href="active-element.html">ally.is.activeElement</a>
           </li>
           
           
@@ -193,6 +206,11 @@
           
           
           <li class="">
+            <a class="" href="../maintain/tab-focus.html">ally.maintain.tabFocus</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="../map/attribute.html">ally.map.attribute</a>
           </li>
           
@@ -208,12 +226,22 @@
           
           
           <li class="">
+            <a class="" href="../observe/shadow-mutations.html">ally.observe.shadowMutations</a>
+          </li>
+          
+          
+          <li class="">
             <a class="" href="../query/first-tabbable.html">ally.query.firstTabbable</a>
           </li>
           
           
           <li class="">
             <a class="" href="../query/focusable.html">ally.query.focusable</a>
+          </li>
+          
+          
+          <li class="">
+            <a class="" href="../query/shadow-hosts.html">ally.query.shadowHosts</a>
           </li>
           
           
@@ -302,6 +330,8 @@
           
           
           
+          
+          
           </ul>
         </nav>      </aside>
     </div>
@@ -311,7 +341,7 @@
 <p>Determines if an element is considered keyboard focusable (&quot;tabbable&quot;).</p>
 <h2><a id="Description" href="#Description" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Description</h2>
 <p>The function does <em>not</em> verify if an element is focusable. It expects input that is considered focusable, so <code>isTabbable(element)</code> does <em>not always</em> equal <code>isFocusable(element) &amp;&amp; isTabbable(element)</code>.</p>
-<p>Consult the data tables <a href="../../data-tables/focusable.html">what browsers consider focusable</a> and <a href="../../data-tables/focusable.strict.html">what ally.js considers focusable</a> to learn how HTML elements behave.</p>
+<p>Consult the data tables <a href="../../data-tables/focusable.html">what browsers consider focusable</a> and <a href="../../data-tables/focusable.is.html">what ally.js fails to consider focusable</a> to learn how HTML elements behave.</p>
 <h2><a id="Usage" href="#Usage" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Usage</h2>
 <pre><code class="language-javascript">var element = document.getElementById(&apos;victim&apos;);
 var isTabbable = ally.is.tabbable(element);
@@ -325,11 +355,28 @@ var isTabbable = ally.is.tabbable(element);
 <tr><td>element</td><td><a href="https://developer.mozilla.org/en/docs/Web/API/HTMLElement"><code>HTMLElement</code></a></td><td><em>required</em></td><td>The Element to test.</td></tr>
 </tbody>
 </table>
+<p>The underlying rules can also be accessed in the <a href="../concepts.html#Single-options-argument"><code>options</code> argument style</a> by calling <code>ally.is.tabbable.rules(options)</code>:</p>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Default</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>context</td><td><a href="../concepts.html#Selector"><code>&lt;selector&gt;</code></a></td><td><em>required</em></td><td>The element to examine. The first element of a collection is used.</td></tr>
+<tr><td>except</td><td><a href="../concepts.html#Focus-identification-exceptions"><code>&lt;focus identification exception&gt;</code></a></td><td><code>{}</code></td><td>The Element to test.</td></tr>
+</tbody>
+</table>
 <h3><a id="Returns" href="#Returns" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Returns</h3>
-<p>Boolean, <code>true</code> if the element is focus relevant.</p>
+<p>Boolean, <code>true</code> if the element is tabbable.</p>
 <h3><a id="Throws" href="#Throws" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Throws</h3>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError"><code>TypeError</code></a> if <code>element</code> argument is not of type <code>HTMLElement</code>.</p>
 
+<h2><a id="Changes" href="#Changes" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Changes</h2>
+<ul>
+<li>Since <code>v1.1.0</code> matching of <code>SVGElement</code>s is done document-independent, to allow elements from other documents (e.g. from an iframe).</li>
+<li>Since <code>v1.1.0</code> all <code>&lt;iframe&gt;</code> elements are considered focusable, not tabbable - except for IE9.</li>
+<li>Since <code>v1.1.0</code> exceptions can be passed to <code>ally.is.tabbable.rules(options)</code>.</li>
+<li>Since <code>v1.1.0</code> the state of the <code>&lt;iframe&gt;</code> or <code>&lt;object&gt;</code> element in which the currently examined element is hosted in is considered.</li>
+</ul>
 <h2><a id="Notes" href="#Notes" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Notes</h2>
 <p>See <a href="./focus-relevant.html#Notes"><code>ally.is.focusRelevant</code></a></p>
 <div class="note"><strong>NOTE:</strong> there is no way to feature detect if an element is tabbable or not. The <code>Element.tabIndex</code> property gives some indication, but ultimately user agent sniffing (via <a href="https://github.com/bestiejs/platform.js/">platform.js</a>) is done internally to fix mismatches.</div>
@@ -340,7 +387,7 @@ var isTabbable = ally.is.tabbable(element);
 <li><p><a href="focusable.html"><code>ally.is.onlyTabbable</code></a> identifies elements that are keyboard focusable but not focusable by script</p></li>
 <li><p><a href="../query/tabbable.html"><code>ally.query.tabbable</code></a> finds keyboard focusable elements in the DOM</p></li>
 <li><p><a href="../../data-tables/focusable.html">What Browsers Consider Focusable</a></p></li>
-<li><p><a href="../../data-tables/focusable.strict.html">What ally.js Considers Focusable</a></p></li>
+<li><p><a href="../../data-tables/focusable.is.html">What ally.js fails to consider focusable</a></p></li>
 </ul>
 <h2><a id="Contributing" href="#Contributing" class="link-to-headline" aria-label="link to headline">&#x1F517;</a>Contributing</h2>
 <ul>
