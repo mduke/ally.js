@@ -2,12 +2,16 @@
 
 ## master
 
+* Reducing minified size from 127K to 76K (28K to 23K gzipped) by running [rollupify](https://github.com/nolanlawson/rollupify/).
+
+---
+
 * fixing `supports/focus-in-hiden-iframe` to avoid `document.write()` - [issue #126](https://github.com/medialize/ally.js/issues/126)
 * adding [`ally.element.focus`][ally/element/focus] - [issue #121](https://github.com/medialize/ally.js/issues/121)
 * removing `svgelement.prototype.focus` as this should be covered more elegantly by [`ally.element.focus`][ally/element/focus]
 * fixing [`ally.element.disabled`][ally/element/disabled] to remove SVG links from the document's tabbing order in Firefox
 * fixing [`ally.maintain.disabled`][ally/maintain/disabled] to *not* disable ancestors `filter` elements
-
+* adding [rollupify](https://github.com/nolanlawson/rollupify/) to the build job
 
 ## 1.1.0 - Reality Strikes Back
 
