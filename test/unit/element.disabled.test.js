@@ -122,7 +122,6 @@ define(function(require) {
       bdd.it('should overwrite tabindex="0"', modifiesAttribute('non-input', 'tabindex', '-1', '0'));
       bdd.it('should set aria-disabled="true"', modifiesAttribute('non-input', 'aria-disabled', 'true', null));
       bdd.it('should overwrite aria-disabled="false"', modifiesAttribute('non-input', 'aria-disabled', 'true', 'false'));
-
     });
 
     bdd.describe('for input elements', function() {
