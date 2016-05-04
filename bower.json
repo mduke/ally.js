@@ -1,5 +1,5 @@
 {
-  "name": "all.js",
+  "name": "ally.js",
   "main": "./release/ally.js",
   "version": "1.1.1",
   "devDependencies": {}
